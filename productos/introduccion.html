@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Análisis Exploratorio de las ventas de 17.000 juegos</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="introduccion_files/libs/clipboard/clipboard.min.js"></script>
+<script src="introduccion_files/libs/quarto-html/quarto.js"></script>
+<script src="introduccion_files/libs/quarto-html/popper.min.js"></script>
+<script src="introduccion_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="introduccion_files/libs/quarto-html/anchor.min.js"></script>
+<link href="introduccion_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="introduccion_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="introduccion_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="introduccion_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="introduccion_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Indice de contenidos</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Análisis Exploratorio de las ventas de 17.000 juegos</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="introducción" class="level1">
+<h1>Introducción</h1>
+<p>En la historia, hemos visto cómo los videojuegos han ido evolucionando a medida que transcurre el tiempo. Podemos ver el cómo van mejorando sus motores gráficos, como también el catálogo de géneros de estos.</p>
+<p>Gracias a esto, las preferencias de los usuarios también han ido variando. En los inicios solo había unos pocos juegos que se vendían masivamente y eran casi la única alternativa para entretenerse virtualmente. Ahora, dado a la masificación de la industria de los videojuegos, existen una gran cantidad de géneros y formatos para estos.</p>
+<p>En este reporte analizaremos una base de datos la cual contiene son videojuegos con ventas mayores a 100.000 copias al rededor del mundo, y están recopilados desde el año 1980 hasta el 2016.</p>
+<p>Por lo cual, el objetivo de este análisis exploratorio es el entender cómo los datos están distribuidos e idealmente el poder generar conocimiento para la toma de decisiones en el futuro. Por otra parte, el enfoque de este análisis es el explorar lo más posible los datos de la manera más simple, intuitiva e informativa. Para ello, este proyecto se dividirá en 2 partes.</p>
+<ul>
+<li><p>Análisis descriptivo: Acá analizaremos datos relevantes tales como las medidas de tendencia central, gráficos de dispersión, entre otros.</p></li>
+<li><p>Análisis exploratorio: En esta sección nos adentraremos en los datos y responderemos algunas preguntas, tales como</p>
+<ul>
+<li><p>¿Cuál es el juego más vendido en el mundo?</p></li>
+<li><p>¿Cuál es el número de ventas por plataforma?</p></li>
+<li><p>¿Cuántas copias se venden al año?</p></li>
+</ul></li>
+</ul>
+<p>entre otras preguntas que surgirán al analizar los datos.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

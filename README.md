@@ -1,3 +1,3 @@
-# Proyecto Let análisis
+# Proyecto análisis LET0010
 
-Ojala me saque buena nota :hankey: :+1:
+Repositorio utilizado para realizar el análisis exploratorio de una base de datos para el curso LET0010.
