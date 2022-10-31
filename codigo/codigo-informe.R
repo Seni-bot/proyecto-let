@@ -1,59 +1,57 @@
----
-title: "Análisis exploratorio de las ventas de 17.000 videojuegos"
-format: html
-editor: visual
-lang: es
-theme: zephyr
-toc: true
----
-
-# Introducción
-
-En la historia, hemos visto cómo los videojuegos han ido evolucionando a medida que transcurre el tiempo. Podemos ver el cómo van mejorando sus motores gráficos, como también el catálogo de géneros de estos.
-
-Gracias a esto, las preferencias de los usuarios también han ido variando. En los inicios solo había unos pocos juegos que se vendían masivamente y eran casi la única alternativa para entretenerse virtualmente. Ahora, dado a la masificación de la industria de los videojuegos, existen una gran cantidad de géneros y formatos para estos.
-
-En este reporte analizaremos una base de datos la cual contiene información sobre videojuegos con ventas mayores a 100.000 copias al rededor del mundo, y están recopilados desde el año 1980 hasta el 2016.
-
-Por lo cual, el objetivo de este análisis exploratorio es el entender cómo los datos están distribuidos e idealmente el poder generar conocimiento para la toma de decisiones en el futuro. Por otra parte, el enfoque de este análisis es el explorar lo más posible los datos de la manera más simple, intuitiva e informativa. Para ello, este proyecto se dividirá en 2 partes.
-
--   Análisis descriptivo: Acá analizaremos datos relevantes tales como las medidas de tendencia central, gráficos de dispersión, entre otros.
-
--   Análisis exploratorio: En esta sección nos adentraremos en los datos y responderemos algunas preguntas más especificas, que se detallarán más adelante.
-
-Es relevante el analizar este tipo de preguntas para tener una idea de cómo se comporta la gente a la hora de comprar una copia tanto física como digital según su continente. Esto no solo nos sirve a nosotros para darnos una idea, sino también a las desarrolladoras de juegos, ya que les puede dar una idea de cómo enfocar su marketing o en qué continente enfocarse más al momento de crear un juego.
-
-# Gráficos y tablas
-
-Empezamos familiarizandonos con nuestra base, la cual está compuesta por 11 variables:
-
-| Variable       | Tipo     | Descripción                                 |
-|----------------|----------|---------------------------------------------|
-| `Rank`         | numérica | Ranking de ventas totales.                  |
-| `Name`         | caracter | Nombre del juego.                           |
-| `Platform`     | caracter | Plataforma de lanzamiento del juego.        |
-| `Year`         | numérica | Año en el que el juego fué lanzado.         |
-| `Genre`        | caracter | Género del juego.                           |
-| `Publisher`    | caracter | Empresa que publicó el juego.               |
-| `NA_Sales`     | numérica | Ventas en Norte América (en millones).      |
-| `EU_Sales`     | numérica | Ventas en Europa (en millones).             |
-| `JP_Sales`     | numérica | Ventas en Japón (en millones).              |
-| `Other_Sales`  | numérica | Ventas en el resto del mundo (en millones). |
-| `Global_Sales` | numérica | Ventas mundiales totales (en millones).     |
-
-```{r}
-#| echo: false
-#| message: false
-#| 
 library(readr)
 library(dplyr)
 library(ggplot2)
 library(gt)
 library(webshot2)
 library(gtExtras)
-library(here)
 
-datos <- read_csv(here("datos/vgsales.csv"))
+# Importando los datos ----------------------------------------------------------------------------
+
+datos <- read_csv("datos/vgsales.csv")
+
+# Gráfico 1: ¿Cuál es el género más repetido?------------------------------------------------------
+
+row <- distinct(datos, Genre) # Cuantos géneros hay en la db
+
+unicos_genre <- count(datos, Genre)
+ggplot(unicos_genre)+
+  geom_col(aes(y = reorder(Genre, n),x = n),
+           fill = c("#74d2e7",
+                    "#48a9c5",
+                    "#0085ad",
+                    "#8db9ca",
+                    "#4298b5",
+                    "#005670",
+                    "#00205b",
+                    "#84bd00",
+                    "#efdf00",
+                    "#fe5000",
+                    "#e4002b",
+                    "#da1884")) +
+  labs(title = "Cantidad de videojuegos por género",
+       y = "género",
+       x = NULL,
+       caption = "Gráfico 1")+
+theme_bw()
+
+ggsave("figuras/01_grafico-genero-repetido.png", width = 10, height = 7)
+
+# Gráfico 2: ¿Cuál fue el año con mayor lanzamientos?----------------------------------------------
+
+unicos_year <- count(datos, Year)
+unicos_year <- filter(unicos_year, Year != "N/A")
+ggplot(unicos_year,(aes(x = Year, y = n, group = 1)))+
+  geom_line(color = "#0a7d93", size = 1)+
+  geom_point(color = "#0f343b", size = 2)+
+  labs(title = "Cantidad de juegos lanzados por año",
+       y = "cantidad de videojuegos",
+       x = "años",
+       caption = "Gráfico 2")+
+  scale_x_discrete(breaks = seq(1980, 2020, by = 10))+
+  theme_bw()
+
+ggsave("figuras/02_grafico_año-mayor-lanzamientos.png", width = 10, height = 7)
+
 # Tabla 1: Comparativa de ventas por género--------------------------------------------------------
 
 ## Action -----------------------------------------------------------------------------------------
@@ -461,20 +459,119 @@ df <- cbind(Genero = c("Acción", "Aventura", "Pelea", "Miscelaneo", "Plataforma
               "Puzle", "Carreras", "Rol", "FPS", "Simulacion", "Deportes", "Estrategia"), df)
 gt(df)|>
   tab_header(
-    title = "Comparación de ventas por género",
-    subtitle = "Tabla 1"
+    title = "Comparación de ventas por género (en millones)",
+    subtitle = "Tabla 1",
   )|> 
   tab_options(
     table.width = pct(100)
   )
 
 
-```
 
-![](images/01_grafico-genero-repetido-01.png){fig-align="center"}
+# Gráfico 3: adaptación de la tabla 1 a barplot----------------------------------------------------
 
-![](images/02_grafico_a%C3%B1o-mayor-lanzamientos-02.png)
+genre <- rep(c("Acción", "Aventura", "Pelea", "Miscelaneo", "Plataforma",
+           "Puzle", "Carreras", "Rol", "FPS", "Simulacion", "Deportes", "Estrategia"),4)
 
-![](images/03_grafico-barplot-tabla-01-01.png){fig-align="center"}
+area <- c(rep("Ventas NA",12), rep("Ventas EU",12), rep("Ventas JP",12), rep("Otras ventas",12))
 
-![](images/05_grafico_piechart-ingresos-por-region.png){fig-align="center"}
+valores <- c()
+
+for(i in 1:4){
+  valores <- append(valores, as.integer(action[i]))
+  valores <- append(valores, as.integer(adventure[i]))
+  valores <- append(valores, as.integer(fighting[i]))
+  valores <- append(valores, as.integer(misc[i]))
+  valores <- append(valores, as.integer(platform[i]))
+  valores <- append(valores, as.integer(puzzle[i]))
+  valores <- append(valores, as.integer(racing[i]))
+  valores <- append(valores, as.integer(role[i]))
+  valores <- append(valores, as.integer(shooter[i]))
+  valores <- append(valores, as.integer(simulation[i]))
+  valores <- append(valores, as.integer(sports[i]))
+  valores <- append(valores, as.integer(strategy[i]))
+}
+data <- data.frame(genre, area, valores)
+
+ggplot(data, aes(fill=area, y=valores, x=genre)) + 
+  geom_bar(position="dodge", stat="identity")+
+  labs(x = "género",
+       y = "ventas",
+       fill = "Zona de venta",
+       title = "Ventas por género según área",
+       caption = "Gráfico 3")+
+  scale_fill_manual(values = c("#006C67",
+                      "#FFB100",
+                      "#F194B4",
+                      "#003844"))+
+  theme_bw()
+
+ggsave("figuras/03_grafico-barplot-tabla-01.png", width = 10, height = 7)
+
+# Gráfico 4: Top 20 publicante(cantidad) ----------------------------------------------------------
+
+publicantes <- count(datos, Publisher) # Preguntar como hacer sort de esto
+
+
+# Gráfico 5: Ingresos totales por región ----------------------------------------------------------
+
+## Revenue NA -------------------------------------------------------------------------------------
+revenue_na <- count(datos, NA_Sales)
+rev_na <- 0
+for(i in 1:409){
+  rev_na <- rev_na + revenue_na[i,1] * revenue_na[i,2]
+}
+
+## Revenue EU -------------------------------------------------------------------------------------
+revenue_eu <- count(datos, EU_Sales)
+rev_eu <- 0
+for(i in 1:305){
+  rev_eu <- rev_eu + revenue_eu[i,1] * revenue_eu[i,2]
+}
+
+## Revenue JP -------------------------------------------------------------------------------------
+revenue_jp <- count(datos, JP_Sales)
+rev_jp <- 0
+for(i in 1:244){
+  rev_jp <- rev_jp + revenue_jp[i,1] * revenue_jp[i,2]
+}
+
+## Revenue Other ----------------------------------------------------------------------------------
+revenue_other <- count(datos, Other_Sales)
+rev_other <- 0
+for(i in 1:157){
+  rev_other <- rev_other + revenue_other[i,1] * revenue_other[i,2]
+}
+
+## creando df -> piechart--------------------------------------------------------------------------
+
+data_pie <- data.frame()
+
+data_pie <- data_pie|>
+  rbind(as.numeric(rev_na))
+data_pie <- data_pie|>
+  rbind(as.numeric(rev_eu))
+data_pie <- data_pie|>
+  rbind(as.numeric(rev_jp))
+data_pie <- data_pie|>
+  rbind(as.numeric(rev_other))
+data_pie <- cbind(region = c("Norte América", "Europa", "Japón", "Otro"),data_pie)
+
+colnames(data_pie) <- c("Región", "Ventas")
+
+ggplot(data_pie, aes(x="", y=Ventas, fill=Región)) +
+  geom_bar(stat="identity", width=1, color="white") +
+  geom_text(aes(label = round(Ventas/8916*100,1)),
+            position = position_stack(vjust = 0.5))+ #Preguntar como agregar los %
+  coord_polar("y") +
+  scale_fill_manual(values = c("#FFB100",
+                               "#F194B4",
+                               "#003844",
+                               "#006C67"))+
+  labs(
+    caption = "Gráfico 5"
+  )+
+  theme_void()
+
+ggsave("figuras/05_grafico_piechart-ingresos-por-region.png", width = 10, height = 7)
+

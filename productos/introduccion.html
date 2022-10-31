@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Análisis Exploratorio de las ventas de 17.000 juegos</title>
+<title>Análisis exploratorio de las ventas de 17.000 videojuegos</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,10 +24,10 @@ ul.task-list{list-style: none;}
 <script src="introduccion_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="introduccion_files/libs/quarto-html/anchor.min.js"></script>
 <link href="introduccion_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="introduccion_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="introduccion_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="introduccion_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="introduccion_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="introduccion_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<link href="introduccion_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -41,6 +41,7 @@ ul.task-list{list-style: none;}
    
   <ul>
   <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
+  <li><a href="#gráficos-y-tablas" id="toc-gráficos-y-tablas" class="nav-link" data-scroll-target="#gráficos-y-tablas">Gráficos y tablas</a></li>
   </ul>
 </nav>
 </div>
@@ -48,7 +49,7 @@ ul.task-list{list-style: none;}
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Análisis Exploratorio de las ventas de 17.000 juegos</h1>
+<h1 class="title">Análisis exploratorio de las ventas de 17.000 videojuegos</h1>
 </div>
 
 
@@ -66,18 +67,598 @@ ul.task-list{list-style: none;}
 <h1>Introducción</h1>
 <p>En la historia, hemos visto cómo los videojuegos han ido evolucionando a medida que transcurre el tiempo. Podemos ver el cómo van mejorando sus motores gráficos, como también el catálogo de géneros de estos.</p>
 <p>Gracias a esto, las preferencias de los usuarios también han ido variando. En los inicios solo había unos pocos juegos que se vendían masivamente y eran casi la única alternativa para entretenerse virtualmente. Ahora, dado a la masificación de la industria de los videojuegos, existen una gran cantidad de géneros y formatos para estos.</p>
-<p>En este reporte analizaremos una base de datos la cual contiene son videojuegos con ventas mayores a 100.000 copias al rededor del mundo, y están recopilados desde el año 1980 hasta el 2016.</p>
+<p>En este reporte analizaremos una base de datos la cual contiene información sobre videojuegos con ventas mayores a 100.000 copias al rededor del mundo, y están recopilados desde el año 1980 hasta el 2016.</p>
 <p>Por lo cual, el objetivo de este análisis exploratorio es el entender cómo los datos están distribuidos e idealmente el poder generar conocimiento para la toma de decisiones en el futuro. Por otra parte, el enfoque de este análisis es el explorar lo más posible los datos de la manera más simple, intuitiva e informativa. Para ello, este proyecto se dividirá en 2 partes.</p>
 <ul>
 <li><p>Análisis descriptivo: Acá analizaremos datos relevantes tales como las medidas de tendencia central, gráficos de dispersión, entre otros.</p></li>
-<li><p>Análisis exploratorio: En esta sección nos adentraremos en los datos y responderemos algunas preguntas, tales como</p>
-<ul>
-<li><p>¿Cuál es el juego más vendido en el mundo?</p></li>
-<li><p>¿Cuál es el número de ventas por plataforma?</p></li>
-<li><p>¿Cuántas copias se venden al año?</p></li>
-</ul></li>
+<li><p>Análisis exploratorio: En esta sección nos adentraremos en los datos y responderemos algunas preguntas más especificas, que se detallarán más adelante.</p></li>
 </ul>
-<p>entre otras preguntas que surgirán al analizar los datos. Es relevante el analizar este tipo de preguntas para tener una idea de cómo se comporta la gente a la hora de comprar una copia tanto física como digital según su continente. Esto no solo nos sirve a nosotros para darnos una idea, sino también a las desarrolladoras de juegos, ya que les puede dar una idea de cómo enfocar su marketing o en qué continente enfocarse más al momento de crear un juego.</p>
+<p>Es relevante el analizar este tipo de preguntas para tener una idea de cómo se comporta la gente a la hora de comprar una copia tanto física como digital según su continente. Esto no solo nos sirve a nosotros para darnos una idea, sino también a las desarrolladoras de juegos, ya que les puede dar una idea de cómo enfocar su marketing o en qué continente enfocarse más al momento de crear un juego.</p>
+</section>
+<section id="gráficos-y-tablas" class="level1">
+<h1>Gráficos y tablas</h1>
+<p>Empezamos familiarizandonos con nuestra base, la cual está compuesta por 11 variables:</p>
+<table class="table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 14%">
+<col style="width: 63%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Rank</code></td>
+<td>numérica</td>
+<td>Ranking de ventas totales.</td>
+</tr>
+<tr class="even">
+<td><code>Name</code></td>
+<td>caracter</td>
+<td>Nombre del juego.</td>
+</tr>
+<tr class="odd">
+<td><code>Platform</code></td>
+<td>caracter</td>
+<td>Plataforma de lanzamiento del juego.</td>
+</tr>
+<tr class="even">
+<td><code>Year</code></td>
+<td>numérica</td>
+<td>Año en el que el juego fué lanzado.</td>
+</tr>
+<tr class="odd">
+<td><code>Genre</code></td>
+<td>caracter</td>
+<td>Género del juego.</td>
+</tr>
+<tr class="even">
+<td><code>Publisher</code></td>
+<td>caracter</td>
+<td>Empresa que publicó el juego.</td>
+</tr>
+<tr class="odd">
+<td><code>NA_Sales</code></td>
+<td>numérica</td>
+<td>Ventas en Norte América (en millones).</td>
+</tr>
+<tr class="even">
+<td><code>EU_Sales</code></td>
+<td>numérica</td>
+<td>Ventas en Europa (en millones).</td>
+</tr>
+<tr class="odd">
+<td><code>JP_Sales</code></td>
+<td>numérica</td>
+<td>Ventas en Japón (en millones).</td>
+</tr>
+<tr class="even">
+<td><code>Other_Sales</code></td>
+<td>numérica</td>
+<td>Ventas en el resto del mundo (en millones).</td>
+</tr>
+<tr class="odd">
+<td><code>Global_Sales</code></td>
+<td>numérica</td>
+<td>Ventas mundiales totales (en millones).</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="xgrwgjcrch" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#xgrwgjcrch .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: 100%;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#xgrwgjcrch .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xgrwgjcrch .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#xgrwgjcrch .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#xgrwgjcrch .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xgrwgjcrch .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xgrwgjcrch .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#xgrwgjcrch .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#xgrwgjcrch .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#xgrwgjcrch .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#xgrwgjcrch .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#xgrwgjcrch .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xgrwgjcrch .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xgrwgjcrch .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#xgrwgjcrch .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#xgrwgjcrch .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#xgrwgjcrch .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xgrwgjcrch .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#xgrwgjcrch .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#xgrwgjcrch .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xgrwgjcrch .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#xgrwgjcrch .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#xgrwgjcrch .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xgrwgjcrch .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xgrwgjcrch .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#xgrwgjcrch .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#xgrwgjcrch .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xgrwgjcrch .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xgrwgjcrch .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xgrwgjcrch .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xgrwgjcrch .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xgrwgjcrch .gt_left {
+  text-align: left;
+}
+
+#xgrwgjcrch .gt_center {
+  text-align: center;
+}
+
+#xgrwgjcrch .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#xgrwgjcrch .gt_font_normal {
+  font-weight: normal;
+}
+
+#xgrwgjcrch .gt_font_bold {
+  font-weight: bold;
+}
+
+#xgrwgjcrch .gt_font_italic {
+  font-style: italic;
+}
+
+#xgrwgjcrch .gt_super {
+  font-size: 65%;
+}
+
+#xgrwgjcrch .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#xgrwgjcrch .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#xgrwgjcrch .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#xgrwgjcrch .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#xgrwgjcrch .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#xgrwgjcrch .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#xgrwgjcrch .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <td colspan="5" class="gt_heading gt_title gt_font_normal" style="">Comparación de ventas por género</td>
+    </tr>
+    <tr>
+      <td colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Tabla 1</td>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">Genero</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">Ventas NA</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">Ventas EU</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">Ventas JP</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">Otras ventas</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">Acción</td>
+<td class="gt_row gt_right">877.83</td>
+<td class="gt_row gt_right">525.00</td>
+<td class="gt_row gt_right">159.95</td>
+<td class="gt_row gt_right">187.38</td></tr>
+    <tr><td class="gt_row gt_left">Aventura</td>
+<td class="gt_row gt_right">105.80</td>
+<td class="gt_row gt_right">64.13</td>
+<td class="gt_row gt_right">52.07</td>
+<td class="gt_row gt_right">16.81</td></tr>
+    <tr><td class="gt_row gt_left">Pelea</td>
+<td class="gt_row gt_right">223.59</td>
+<td class="gt_row gt_right">101.32</td>
+<td class="gt_row gt_right">87.35</td>
+<td class="gt_row gt_right">36.68</td></tr>
+    <tr><td class="gt_row gt_left">Miscelaneo</td>
+<td class="gt_row gt_right">410.24</td>
+<td class="gt_row gt_right">215.98</td>
+<td class="gt_row gt_right">107.76</td>
+<td class="gt_row gt_right">75.32</td></tr>
+    <tr><td class="gt_row gt_left">Plataforma</td>
+<td class="gt_row gt_right">447.05</td>
+<td class="gt_row gt_right">201.63</td>
+<td class="gt_row gt_right">130.77</td>
+<td class="gt_row gt_right">51.59</td></tr>
+    <tr><td class="gt_row gt_left">Puzle</td>
+<td class="gt_row gt_right">123.78</td>
+<td class="gt_row gt_right">50.78</td>
+<td class="gt_row gt_right">57.31</td>
+<td class="gt_row gt_right">12.55</td></tr>
+    <tr><td class="gt_row gt_left">Carreras</td>
+<td class="gt_row gt_right">359.42</td>
+<td class="gt_row gt_right">238.39</td>
+<td class="gt_row gt_right">56.69</td>
+<td class="gt_row gt_right">77.27</td></tr>
+    <tr><td class="gt_row gt_left">Rol</td>
+<td class="gt_row gt_right">327.28</td>
+<td class="gt_row gt_right">188.06</td>
+<td class="gt_row gt_right">352.31</td>
+<td class="gt_row gt_right">59.61</td></tr>
+    <tr><td class="gt_row gt_left">FPS</td>
+<td class="gt_row gt_right">582.60</td>
+<td class="gt_row gt_right">313.27</td>
+<td class="gt_row gt_right">38.28</td>
+<td class="gt_row gt_right">102.69</td></tr>
+    <tr><td class="gt_row gt_left">Simulacion</td>
+<td class="gt_row gt_right">183.31</td>
+<td class="gt_row gt_right">113.38</td>
+<td class="gt_row gt_right">63.70</td>
+<td class="gt_row gt_right">31.52</td></tr>
+    <tr><td class="gt_row gt_left">Deportes</td>
+<td class="gt_row gt_right">683.35</td>
+<td class="gt_row gt_right">376.85</td>
+<td class="gt_row gt_right">135.37</td>
+<td class="gt_row gt_right">134.97</td></tr>
+    <tr><td class="gt_row gt_left">Estrategia</td>
+<td class="gt_row gt_right">68.70</td>
+<td class="gt_row gt_right">45.34</td>
+<td class="gt_row gt_right">49.46</td>
+<td class="gt_row gt_right">11.36</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/01_grafico-genero-repetido-01.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p><img src="images/02_grafico_a%C3%B1o-mayor-lanzamientos-02.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/03_grafico-barplot-tabla-01-01.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/05_grafico_piechart-ingresos-por-region.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </section>
 
 </main>
