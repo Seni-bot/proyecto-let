@@ -4,6 +4,8 @@ format:
   html:
     code-fold: true
     code-summary: "Mostrar código."
+    link-external-icon: true
+    link-external-newwindow: true
 editor: visual
 lang: es
 theme: zephyr
@@ -43,6 +45,10 @@ Empezamos familiarizandonos con nuestra base, la cual está compuesta por 11 var
 | `JP_Sales`     | numérica | Ventas en Japón (en millones).              |
 | `Other_Sales`  | numérica | Ventas en el resto del mundo (en millones). |
 | `Global_Sales` | numérica | Ventas mundiales totales (en millones).     |
+
+Analizando nuestras variables, notamos que nuestros datos nos muestran las ventas de videojuegos separadas por continente. Además de contener distintos identificadores para poder empezar nuestro analisis exploratorio.
+
+Lo primero que podríamos preguntarnos al ver esta tabla sería ¿cuál es el género que más se ha vendido a lo largo del tiempo?. Para esto, presentamos el siguiente gráfico
 
 ```{r}
 #| echo: false
@@ -90,6 +96,10 @@ ggplot(unicos_genre)+
        caption = "Gráfico 1")+
 theme_bw()
 ```
+
+al analizar este histograma, notamos que el género más vendido Acción, con aproximadamente 3300 Millones de copias, lo sigue el género de Deportes con aproximadamente 2400 Millones de copias y en tercera posicion se encuentra Misceláneo, con un aproximado de 1750 Millones copias vendidas.
+
+Sin embargo, si bien es informativo saber cuál es el género más vendido, nos interesa saber el cuándo y donde se presentaron las ventas. Para esto, tenemos los siguientes gráficos
 
 ```{r}
 #| message: false
@@ -555,20 +565,26 @@ for(i in 1:4){
 }
 data <- data.frame(genre, area, valores)
 
-ggplot(data, aes(fill=area, y=valores, x=genre)) + 
-  geom_bar(position="dodge", stat="identity")+
-  labs(x = "género",
-       y = "ventas",
-       fill = "Zona de venta",
-       title = "Ventas por género según área",
-       subtitle = "(en millones)",
-       caption = "Gráfico 3")+
-  scale_fill_manual(values = c("#006C67",
-                      "#FFB100",
-                      "#F194B4",
-                      "#003844"))+
-  theme_bw()
+#ggplot(data, aes(fill=area, y=valores, x=genre)) + 
+#  geom_bar(position="dodge", stat="identity")+
+#  labs(x = "género",
+#       y = "ventas",
+#       fill = "Zona de venta",
+#       title = "Ventas por género según área",
+#       subtitle = "(en millones)",
+#       caption = "Gráfico 3")+
+#  scale_fill_manual(values = c("#006C67",
+#                      "#FFB100",
+#                      "#F194B4",
+#                      "#003844"))+
+#  theme_bw()
 ```
+
+![](images/03_grafico-barplot-tabla-01-02.png)
+
+Podemos ver que dado el gráfico 2, que el año en donde más se lanzaron videojuegos al mercado fué el año 2009, con cerca de 1500 Millones de copias. También podemos apreciar que desde ese año en adelante, ocurrió una tendencia a disminuir la cantidad de videojuegos lanzados. Esto se podría explicar debido a varios factores, una opción podría ser que las desarrolladoras empezaron a preocuparse más en realizar menos lanzamientos pero de una mayor calidad, o bien se podría relacionar con la salida de la séptima generación de videoconsolas (PlayStation 3, Xbox 360, Wii), puestas a disposición del público el año 2007 en promedio.
+
+Ahora, analizando la tabla 1, apreciamos que en casi tods los géneros disponibles, Norte América es el lider de ventas. La excepción ocurre para el género de Rol, el cual la región de Japón es la lider en ventas. Esta tendencia no es de extrañar, bien es sabido que a los Nipónes tienen un interés bastante fuerte hacia este tipo de videojuegos. [Ver artículo](http://www.scielo.org.co/pdf/rlcs/v10n1/v10n1a02.pdf)
 
 ```{r}
 #| message: false
