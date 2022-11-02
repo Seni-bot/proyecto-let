@@ -29,6 +29,7 @@ ggplot(unicos_genre)+
                     "#e4002b",
                     "#da1884")) +
   labs(title = "Cantidad de videojuegos por género",
+       subtitle = "(en millones)",
        y = "género",
        x = NULL,
        caption = "Gráfico 1")+
@@ -44,6 +45,7 @@ ggplot(unicos_year,(aes(x = Year, y = n, group = 1)))+
   geom_line(color = "#0a7d93", size = 1)+
   geom_point(color = "#0f343b", size = 2)+
   labs(title = "Cantidad de juegos lanzados por año",
+       subtitle = "(en millones)",
        y = "cantidad de videojuegos",
        x = "años",
        caption = "Gráfico 2")+
@@ -499,6 +501,7 @@ ggplot(data, aes(fill=area, y=valores, x=genre)) +
        y = "ventas",
        fill = "Zona de venta",
        title = "Ventas por género según área",
+       subtitle = "(en millones)",
        caption = "Gráfico 3")+
   scale_fill_manual(values = c("#006C67",
                       "#FFB100",
@@ -573,5 +576,5 @@ ggplot(data_pie, aes(x="", y=Ventas, fill=Región)) +
   )+
   theme_void()
 
-ggsave("figuras/05_grafico_piechart-ingresos-por-region.png", width = 10, height = 7)
+#ggsave("figuras/05_grafico_piechart-ingresos-por-region.png", width = 10, height = 7)
 

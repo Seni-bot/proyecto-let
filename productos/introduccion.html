@@ -15,6 +15,69 @@ span.underline{text-decoration: underline;}
 div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -67,13 +130,13 @@ ul.task-list{list-style: none;}
 <h1>Introducción</h1>
 <p>En la historia, hemos visto cómo los videojuegos han ido evolucionando a medida que transcurre el tiempo. Podemos ver el cómo van mejorando sus motores gráficos, como también el catálogo de géneros de estos.</p>
 <p>Gracias a esto, las preferencias de los usuarios también han ido variando. En los inicios solo había unos pocos juegos que se vendían masivamente y eran casi la única alternativa para entretenerse virtualmente. Ahora, dado a la masificación de la industria de los videojuegos, existen una gran cantidad de géneros y formatos para estos.</p>
-<p>En este reporte analizaremos una base de datos la cual contiene información sobre videojuegos con ventas mayores a 100.000 copias al rededor del mundo, y están recopilados desde el año 1980 hasta el 2016.</p>
+<p>En este reporte analizaremos una base de datos que contiene videojuegos con ventas mayores a 100.000 copias al rededor del mundo, y están recopilados desde el año 1980 hasta el 2016.</p>
+<p>Es relevante el analizar este tipo de información para tener una idea de cómo se comporta la gente a la hora de comprar una copia tanto física como digital según su continente. Este tipo de analisis favorece en gran parte a las desarrolladoras de juegos, debido a que les ayuda a cómo enfocar su marketing o en qué continente enfocarse más al momento de crear un juego.</p>
 <p>Por lo cual, el objetivo de este análisis exploratorio es el entender cómo los datos están distribuidos e idealmente el poder generar conocimiento para la toma de decisiones en el futuro. Por otra parte, el enfoque de este análisis es el explorar lo más posible los datos de la manera más simple, intuitiva e informativa. Para ello, este proyecto se dividirá en 2 partes.</p>
 <ul>
 <li><p>Análisis descriptivo: Acá analizaremos datos relevantes tales como las medidas de tendencia central, gráficos de dispersión, entre otros.</p></li>
 <li><p>Análisis exploratorio: En esta sección nos adentraremos en los datos y responderemos algunas preguntas más especificas, que se detallarán más adelante.</p></li>
 </ul>
-<p>Es relevante el analizar este tipo de preguntas para tener una idea de cómo se comporta la gente a la hora de comprar una copia tanto física como digital según su continente. Esto no solo nos sirve a nosotros para darnos una idea, sino también a las desarrolladoras de juegos, ya que les puede dar una idea de cómo enfocar su marketing o en qué continente enfocarse más al momento de crear un juego.</p>
 </section>
 <section id="gráficos-y-tablas" class="level1">
 <h1>Gráficos y tablas</h1>
@@ -150,14 +213,492 @@ ul.task-list{list-style: none;}
 </tbody>
 </table>
 <div class="cell">
+
+</div>
+<div class="cell">
+<details>
+<summary>Mostrar código.</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importando los datos ----------------------------------------------------------------------------</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"datos/vgsales.csv"</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico 1: ¿Cuál es el género más repetido?------------------------------------------------------</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>row <span class="ot">&lt;-</span> <span class="fu">distinct</span>(datos, Genre) <span class="co"># Cuantos géneros hay en la db</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>unicos_genre <span class="ot">&lt;-</span> <span class="fu">count</span>(datos, Genre)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(unicos_genre)<span class="sc">+</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">reorder</span>(Genre, n),<span class="at">x =</span> n),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">"#74d2e7"</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"#48a9c5"</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"#0085ad"</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"#8db9ca"</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"#4298b5"</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"#005670"</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"#00205b"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"#84bd00"</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"#efdf00"</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"#fe5000"</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"#e4002b"</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"#da1884"</span>)) <span class="sc">+</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Cantidad de videojuegos por género"</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"(en millones)"</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"género"</span>,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Gráfico 1"</span>)<span class="sc">+</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="introduccion_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Mostrar código.</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico 2: ¿Cuál fue el año con mayor lanzamientos?----------------------------------------------</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>unicos_year <span class="ot">&lt;-</span> <span class="fu">count</span>(datos, Year)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>unicos_year <span class="ot">&lt;-</span> <span class="fu">filter</span>(unicos_year, Year <span class="sc">!=</span> <span class="st">"N/A"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(unicos_year,(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> n, <span class="at">group =</span> <span class="dv">1</span>)))<span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"#0a7d93"</span>, <span class="at">size =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#0f343b"</span>, <span class="at">size =</span> <span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Cantidad de juegos lanzados por año"</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"(en millones)"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"cantidad de videojuegos"</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"años"</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Gráfico 2"</span>)<span class="sc">+</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">1980</span>, <span class="dv">2020</span>, <span class="at">by =</span> <span class="dv">10</span>))<span class="sc">+</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="introduccion_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Mostrar código.</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla 1: Comparativa de ventas por género--------------------------------------------------------</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Action -----------------------------------------------------------------------------------------</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>action_na <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Action"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>action_na <span class="ot">&lt;-</span> <span class="fu">count</span>(action_na, NA_Sales)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>act_na <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">221</span>){</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  act_na <span class="ot">&lt;-</span> act_na <span class="sc">+</span> action_na[i,<span class="dv">1</span>]<span class="sc">*</span>action_na[i,<span class="dv">2</span>]</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>action_eu <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Action"</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>action_eu <span class="ot">&lt;-</span> <span class="fu">count</span>(action_eu, EU_Sales)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>act_eu <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">170</span>){</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  act_eu <span class="ot">&lt;-</span> act_eu <span class="sc">+</span> action_eu[i,<span class="dv">1</span>]<span class="sc">*</span>action_eu[i,<span class="dv">2</span>]</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>action_jp <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Action"</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>action_jp <span class="ot">&lt;-</span> <span class="fu">count</span>(action_jp, JP_Sales)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>act_jp <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">94</span>){</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  act_jp <span class="ot">&lt;-</span> act_jp <span class="sc">+</span> action_jp[i,<span class="dv">1</span>]<span class="sc">*</span>action_jp[i,<span class="dv">2</span>]</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>action_other <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Action"</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>action_other <span class="ot">&lt;-</span> <span class="fu">count</span>(action_other, Other_Sales)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>act_other <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">86</span>){</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  act_other <span class="ot">&lt;-</span> act_other <span class="sc">+</span> action_other[i,<span class="dv">1</span>]<span class="sc">*</span>action_other[i,<span class="dv">2</span>]</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>action <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">c</span>(act_na, act_eu, act_jp, act_other))</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="do">## Adventure --------------------------------------------------------------------------------------</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>adventure_na <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Adventure"</span>)</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>adventure_na <span class="ot">&lt;-</span> <span class="fu">count</span>(adventure_na, NA_Sales)</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>adv_na <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">78</span>){</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>  adv_na <span class="ot">&lt;-</span> adv_na <span class="sc">+</span> adventure_na[i,<span class="dv">1</span>]<span class="sc">*</span>adventure_na[i,<span class="dv">2</span>]</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>adventure_eu <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Adventure"</span>)</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>adventure_eu <span class="ot">&lt;-</span> <span class="fu">count</span>(adventure_eu, EU_Sales)</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>adv_eu <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">65</span>){</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>  adv_eu <span class="ot">&lt;-</span> adv_eu <span class="sc">+</span> adventure_eu[i,<span class="dv">1</span>]<span class="sc">*</span>adventure_eu[i,<span class="dv">2</span>]</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>adventure_jp <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Adventure"</span>)</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>adventure_jp <span class="ot">&lt;-</span> <span class="fu">count</span>(adventure_jp, JP_Sales)</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>adv_jp <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>){</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>  adv_jp <span class="ot">&lt;-</span> adv_jp <span class="sc">+</span> adventure_jp[i,<span class="dv">1</span>]<span class="sc">*</span>adventure_jp[i,<span class="dv">2</span>]</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>adventure_other <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Adventure"</span>)</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>adventure_other <span class="ot">&lt;-</span> <span class="fu">count</span>(adventure_other, Other_Sales)</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>adv_other <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">29</span>){</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>  adv_other <span class="ot">&lt;-</span> adv_other <span class="sc">+</span> adventure_other[i,<span class="dv">1</span>]<span class="sc">*</span>adventure_other[i,<span class="dv">2</span>]</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>adventure <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">c</span>(adv_na, adv_eu, adv_jp, adv_other))</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a><span class="do">## Fighting ---------------------------------------------------------------------------------------</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>fighting_na <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Fighting"</span>)</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>fighting_na <span class="ot">&lt;-</span> <span class="fu">count</span>(fighting_na, NA_Sales)</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>fig_na <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">129</span>){</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>  fig_na <span class="ot">&lt;-</span> fig_na <span class="sc">+</span> fighting_na[i,<span class="dv">1</span>]<span class="sc">*</span>fighting_na[i,<span class="dv">2</span>]</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>fighting_eu <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Fighting"</span>)</span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>fighting_eu <span class="ot">&lt;-</span> <span class="fu">count</span>(fighting_eu, EU_Sales)</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>fig_eu <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">85</span>){</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>  fig_eu <span class="ot">&lt;-</span> fig_eu <span class="sc">+</span> fighting_eu[i,<span class="dv">1</span>]<span class="sc">*</span>fighting_eu[i,<span class="dv">2</span>]</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>fighting_jp <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Fighting"</span>)</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>fighting_jp <span class="ot">&lt;-</span> <span class="fu">count</span>(fighting_jp, JP_Sales)</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>fig_jp <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">77</span>){</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>  fig_jp <span class="ot">&lt;-</span> fig_jp <span class="sc">+</span> fighting_jp[i,<span class="dv">1</span>]<span class="sc">*</span>fighting_jp[i,<span class="dv">2</span>]</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>fighting_other <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Fighting"</span>)</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>fighting_other <span class="ot">&lt;-</span> <span class="fu">count</span>(fighting_other, Other_Sales)</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>fig_other <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">46</span>){</span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>  fig_other <span class="ot">&lt;-</span> fig_other <span class="sc">+</span> fighting_other[i,<span class="dv">1</span>]<span class="sc">*</span>fighting_other[i,<span class="dv">2</span>]</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>fighting <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">c</span>(fig_na, fig_eu, fig_jp, fig_other))</span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a><span class="do">## Misc -------------------------------------------------------------------------------------------</span></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>misc_na <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Misc"</span>)</span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>misc_na <span class="ot">&lt;-</span> <span class="fu">count</span>(misc_na, NA_Sales)</span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>mis_na <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">159</span>){</span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>  mis_na <span class="ot">&lt;-</span> mis_na <span class="sc">+</span> misc_na[i,<span class="dv">1</span>]<span class="sc">*</span>misc_na[i,<span class="dv">2</span>]</span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>misc_eu <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Misc"</span>)</span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>misc_eu <span class="ot">&lt;-</span> <span class="fu">count</span>(misc_eu, EU_Sales)</span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>mis_eu <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">118</span>){</span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>  mis_eu <span class="ot">&lt;-</span> mis_eu <span class="sc">+</span> misc_eu[i,<span class="dv">1</span>]<span class="sc">*</span>misc_eu[i,<span class="dv">2</span>]</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>misc_jp <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Misc"</span>)</span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>misc_jp <span class="ot">&lt;-</span> <span class="fu">count</span>(misc_jp, JP_Sales)</span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>mis_jp <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">85</span>){</span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>  mis_jp <span class="ot">&lt;-</span> mis_jp <span class="sc">+</span> misc_jp[i,<span class="dv">1</span>]<span class="sc">*</span>misc_jp[i,<span class="dv">2</span>]</span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>misc_other <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Misc"</span>)</span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>misc_other <span class="ot">&lt;-</span> <span class="fu">count</span>(misc_other, Other_Sales)</span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>mis_other <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">65</span>){</span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>  mis_other <span class="ot">&lt;-</span> mis_other <span class="sc">+</span> misc_other[i,<span class="dv">1</span>]<span class="sc">*</span>misc_other[i,<span class="dv">2</span>]</span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>misc <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">c</span>(mis_na, mis_eu, mis_jp, mis_other))</span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a><span class="do">## Platform ---------------------------------------------------------------------------------------</span></span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>platform_na <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Platform"</span>)</span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a>platform_na <span class="ot">&lt;-</span> <span class="fu">count</span>(platform_na, NA_Sales)</span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a>pla_na <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">175</span>){</span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a>  pla_na <span class="ot">&lt;-</span> pla_na <span class="sc">+</span> platform_na[i,<span class="dv">1</span>]<span class="sc">*</span>platform_na[i,<span class="dv">2</span>]</span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a>platform_eu <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Platform"</span>)</span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a>platform_eu <span class="ot">&lt;-</span> <span class="fu">count</span>(platform_eu, EU_Sales)</span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a>pla_eu <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">120</span>){</span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a>  pla_eu <span class="ot">&lt;-</span> pla_eu <span class="sc">+</span> platform_eu[i,<span class="dv">1</span>]<span class="sc">*</span>platform_eu[i,<span class="dv">2</span>]</span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>platform_jp <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Platform"</span>)</span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a>platform_jp <span class="ot">&lt;-</span> <span class="fu">count</span>(platform_jp, JP_Sales)</span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>pla_jp <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">101</span>){</span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>  pla_jp <span class="ot">&lt;-</span> pla_jp <span class="sc">+</span> platform_jp[i,<span class="dv">1</span>]<span class="sc">*</span>platform_jp[i,<span class="dv">2</span>]</span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a>platform_other <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Platform"</span>)</span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a>platform_other <span class="ot">&lt;-</span> <span class="fu">count</span>(platform_other, Other_Sales)</span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a>pla_other <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">56</span>){</span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a>  pla_other <span class="ot">&lt;-</span> pla_other <span class="sc">+</span> platform_other[i,<span class="dv">1</span>]<span class="sc">*</span>platform_other[i,<span class="dv">2</span>]</span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a>platform <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">c</span>(pla_na, pla_eu, pla_jp, pla_other))</span>
+<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a><span class="do">## Puzzle------------------------------------------------------------------------------------------</span></span>
+<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a>puzzle_na <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Puzzle"</span>)</span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a>puzzle_na <span class="ot">&lt;-</span> <span class="fu">count</span>(puzzle_na, NA_Sales)</span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a>puz_na <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">83</span>){</span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>  puz_na <span class="ot">&lt;-</span> puz_na <span class="sc">+</span> puzzle_na[i,<span class="dv">1</span>]<span class="sc">*</span>puzzle_na[i,<span class="dv">2</span>]</span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a>puzzle_eu <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Puzzle"</span>)</span>
+<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a>puzzle_eu <span class="ot">&lt;-</span> <span class="fu">count</span>(puzzle_eu, EU_Sales)</span>
+<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a>puz_eu <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>){</span>
+<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a>  puz_eu <span class="ot">&lt;-</span> puz_eu <span class="sc">+</span> puzzle_eu[i,<span class="dv">1</span>]<span class="sc">*</span>puzzle_eu[i,<span class="dv">2</span>]</span>
+<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a>puzzle_jp <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Puzzle"</span>)</span>
+<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a>puzzle_jp <span class="ot">&lt;-</span> <span class="fu">count</span>(puzzle_jp, JP_Sales)</span>
+<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a>puz_jp <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">68</span>){</span>
+<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a>  puz_jp <span class="ot">&lt;-</span> puz_jp <span class="sc">+</span> puzzle_jp[i,<span class="dv">1</span>]<span class="sc">*</span>puzzle_jp[i,<span class="dv">2</span>]</span>
+<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a>puzzle_other <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Puzzle"</span>)</span>
+<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a>puzzle_other <span class="ot">&lt;-</span> <span class="fu">count</span>(puzzle_other, Other_Sales)</span>
+<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a>puz_other <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">27</span>){</span>
+<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a>  puz_other <span class="ot">&lt;-</span> puz_other <span class="sc">+</span> puzzle_other[i,<span class="dv">1</span>]<span class="sc">*</span>puzzle_other[i,<span class="dv">2</span>]</span>
+<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a>puzzle <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">c</span>(puz_na, puz_eu, puz_jp, puz_other))</span>
+<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a><span class="do">## Racing------------------------------------------------------------------------------------------</span></span>
+<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a>racing_na <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Racing"</span>)</span>
+<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a>racing_na <span class="ot">&lt;-</span> <span class="fu">count</span>(racing_na, NA_Sales)</span>
+<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a>rac_na <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">155</span>){</span>
+<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a>  rac_na <span class="ot">&lt;-</span> rac_na <span class="sc">+</span> racing_na[i,<span class="dv">1</span>]<span class="sc">*</span>racing_na[i,<span class="dv">2</span>]</span>
+<span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a>racing_eu <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Racing"</span>)</span>
+<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a>racing_eu <span class="ot">&lt;-</span> <span class="fu">count</span>(racing_eu, EU_Sales)</span>
+<span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a>rac_eu <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">125</span>){</span>
+<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a>  rac_eu <span class="ot">&lt;-</span> rac_eu <span class="sc">+</span> racing_eu[i,<span class="dv">1</span>]<span class="sc">*</span>racing_eu[i,<span class="dv">2</span>]</span>
+<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-208"><a href="#cb3-208" aria-hidden="true" tabindex="-1"></a>racing_jp <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Racing"</span>)</span>
+<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a>racing_jp <span class="ot">&lt;-</span> <span class="fu">count</span>(racing_jp, JP_Sales)</span>
+<span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a>rac_jp <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">66</span>){</span>
+<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a>  rac_jp <span class="ot">&lt;-</span> rac_jp <span class="sc">+</span> racing_jp[i,<span class="dv">1</span>]<span class="sc">*</span>racing_jp[i,<span class="dv">2</span>]</span>
+<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a>racing_other <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Racing"</span>)</span>
+<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a>racing_other <span class="ot">&lt;-</span> <span class="fu">count</span>(racing_other, Other_Sales)</span>
+<span id="cb3-217"><a href="#cb3-217" aria-hidden="true" tabindex="-1"></a>rac_other <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-218"><a href="#cb3-218" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">62</span>){</span>
+<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a>  rac_other <span class="ot">&lt;-</span> rac_other <span class="sc">+</span> racing_other[i,<span class="dv">1</span>]<span class="sc">*</span>racing_other[i,<span class="dv">2</span>]</span>
+<span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a>racing <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">c</span>(rac_na, rac_eu, rac_jp, rac_other))</span>
+<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a><span class="do">## Role-Playing------------------------------------------------------------------------------------</span></span>
+<span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a>role_na <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Role-Playing"</span>)</span>
+<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a>role_na <span class="ot">&lt;-</span> <span class="fu">count</span>(role_na, NA_Sales)</span>
+<span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a>rol_na <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">146</span>){</span>
+<span id="cb3-228"><a href="#cb3-228" aria-hidden="true" tabindex="-1"></a>  rol_na <span class="ot">&lt;-</span> rol_na <span class="sc">+</span> role_na[i,<span class="dv">1</span>]<span class="sc">*</span>role_na[i,<span class="dv">2</span>]</span>
+<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a>role_eu <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Role-Playing"</span>)</span>
+<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a>role_eu <span class="ot">&lt;-</span> <span class="fu">count</span>(role_eu, EU_Sales)</span>
+<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a>rol_eu <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">106</span>){</span>
+<span id="cb3-235"><a href="#cb3-235" aria-hidden="true" tabindex="-1"></a>  rol_eu <span class="ot">&lt;-</span> rol_eu <span class="sc">+</span> role_eu[i,<span class="dv">1</span>]<span class="sc">*</span>role_eu[i,<span class="dv">2</span>]</span>
+<span id="cb3-236"><a href="#cb3-236" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-237"><a href="#cb3-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-238"><a href="#cb3-238" aria-hidden="true" tabindex="-1"></a>role_jp <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Role-Playing"</span>)</span>
+<span id="cb3-239"><a href="#cb3-239" aria-hidden="true" tabindex="-1"></a>role_jp <span class="ot">&lt;-</span> <span class="fu">count</span>(role_jp, JP_Sales)</span>
+<span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a>rol_jp <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">152</span>){</span>
+<span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a>  rol_jp <span class="ot">&lt;-</span> rol_jp <span class="sc">+</span> role_jp[i,<span class="dv">1</span>]<span class="sc">*</span>role_jp[i,<span class="dv">2</span>]</span>
+<span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-244"><a href="#cb3-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-245"><a href="#cb3-245" aria-hidden="true" tabindex="-1"></a>role_other <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Role-Playing"</span>)</span>
+<span id="cb3-246"><a href="#cb3-246" aria-hidden="true" tabindex="-1"></a>role_other <span class="ot">&lt;-</span> <span class="fu">count</span>(role_other, Other_Sales)</span>
+<span id="cb3-247"><a href="#cb3-247" aria-hidden="true" tabindex="-1"></a>rol_other <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-248"><a href="#cb3-248" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">62</span>){</span>
+<span id="cb3-249"><a href="#cb3-249" aria-hidden="true" tabindex="-1"></a>  rol_other <span class="ot">&lt;-</span> rol_other <span class="sc">+</span> role_other[i,<span class="dv">1</span>]<span class="sc">*</span>role_other[i,<span class="dv">2</span>]</span>
+<span id="cb3-250"><a href="#cb3-250" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-251"><a href="#cb3-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-252"><a href="#cb3-252" aria-hidden="true" tabindex="-1"></a>role <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">c</span>(rol_na, rol_eu, rol_jp, rol_other))</span>
+<span id="cb3-253"><a href="#cb3-253" aria-hidden="true" tabindex="-1"></a><span class="do">## Shooter-----------------------------------------------------------------------------------------</span></span>
+<span id="cb3-254"><a href="#cb3-254" aria-hidden="true" tabindex="-1"></a>shooter_na <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Shooter"</span>)</span>
+<span id="cb3-255"><a href="#cb3-255" aria-hidden="true" tabindex="-1"></a>shooter_na <span class="ot">&lt;-</span> <span class="fu">count</span>(shooter_na, NA_Sales)</span>
+<span id="cb3-256"><a href="#cb3-256" aria-hidden="true" tabindex="-1"></a>sho_na <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-257"><a href="#cb3-257" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">199</span>){</span>
+<span id="cb3-258"><a href="#cb3-258" aria-hidden="true" tabindex="-1"></a>  sho_na <span class="ot">&lt;-</span> sho_na <span class="sc">+</span> shooter_na[i,<span class="dv">1</span>]<span class="sc">*</span>shooter_na[i,<span class="dv">2</span>]</span>
+<span id="cb3-259"><a href="#cb3-259" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-260"><a href="#cb3-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-261"><a href="#cb3-261" aria-hidden="true" tabindex="-1"></a>shooter_eu <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Shooter"</span>)</span>
+<span id="cb3-262"><a href="#cb3-262" aria-hidden="true" tabindex="-1"></a>shooter_eu <span class="ot">&lt;-</span> <span class="fu">count</span>(shooter_eu, EU_Sales)</span>
+<span id="cb3-263"><a href="#cb3-263" aria-hidden="true" tabindex="-1"></a>sho_eu <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-264"><a href="#cb3-264" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">152</span>){</span>
+<span id="cb3-265"><a href="#cb3-265" aria-hidden="true" tabindex="-1"></a>  sho_eu <span class="ot">&lt;-</span> sho_eu <span class="sc">+</span> shooter_eu[i,<span class="dv">1</span>]<span class="sc">*</span>shooter_eu[i,<span class="dv">2</span>]</span>
+<span id="cb3-266"><a href="#cb3-266" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-267"><a href="#cb3-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-268"><a href="#cb3-268" aria-hidden="true" tabindex="-1"></a>shooter_jp <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Shooter"</span>)</span>
+<span id="cb3-269"><a href="#cb3-269" aria-hidden="true" tabindex="-1"></a>shooter_jp <span class="ot">&lt;-</span> <span class="fu">count</span>(shooter_jp, JP_Sales)</span>
+<span id="cb3-270"><a href="#cb3-270" aria-hidden="true" tabindex="-1"></a>sho_jp <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-271"><a href="#cb3-271" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">55</span>){</span>
+<span id="cb3-272"><a href="#cb3-272" aria-hidden="true" tabindex="-1"></a>  sho_jp <span class="ot">&lt;-</span> sho_jp <span class="sc">+</span> shooter_jp[i,<span class="dv">1</span>]<span class="sc">*</span>shooter_jp[i,<span class="dv">2</span>]</span>
+<span id="cb3-273"><a href="#cb3-273" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-274"><a href="#cb3-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-275"><a href="#cb3-275" aria-hidden="true" tabindex="-1"></a>shooter_other <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Shooter"</span>)</span>
+<span id="cb3-276"><a href="#cb3-276" aria-hidden="true" tabindex="-1"></a>shooter_other <span class="ot">&lt;-</span> <span class="fu">count</span>(shooter_other, Other_Sales)</span>
+<span id="cb3-277"><a href="#cb3-277" aria-hidden="true" tabindex="-1"></a>sho_other <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-278"><a href="#cb3-278" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">83</span>){</span>
+<span id="cb3-279"><a href="#cb3-279" aria-hidden="true" tabindex="-1"></a>  sho_other <span class="ot">&lt;-</span> sho_other <span class="sc">+</span> shooter_other[i,<span class="dv">1</span>]<span class="sc">*</span>shooter_other[i,<span class="dv">2</span>]</span>
+<span id="cb3-280"><a href="#cb3-280" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-281"><a href="#cb3-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-282"><a href="#cb3-282" aria-hidden="true" tabindex="-1"></a>shooter <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">c</span>(sho_na, sho_eu, sho_jp, sho_other))</span>
+<span id="cb3-283"><a href="#cb3-283" aria-hidden="true" tabindex="-1"></a><span class="do">## Simulation--------------------------------------------------------------------------------------</span></span>
+<span id="cb3-284"><a href="#cb3-284" aria-hidden="true" tabindex="-1"></a>simulation_na <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Simulation"</span>)</span>
+<span id="cb3-285"><a href="#cb3-285" aria-hidden="true" tabindex="-1"></a>simulation_na <span class="ot">&lt;-</span> <span class="fu">count</span>(simulation_na, NA_Sales)</span>
+<span id="cb3-286"><a href="#cb3-286" aria-hidden="true" tabindex="-1"></a>sim_na <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-287"><a href="#cb3-287" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">117</span>){</span>
+<span id="cb3-288"><a href="#cb3-288" aria-hidden="true" tabindex="-1"></a>  sim_na <span class="ot">&lt;-</span> sim_na <span class="sc">+</span> simulation_na[i,<span class="dv">1</span>]<span class="sc">*</span>simulation_na[i,<span class="dv">2</span>]</span>
+<span id="cb3-289"><a href="#cb3-289" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-290"><a href="#cb3-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-291"><a href="#cb3-291" aria-hidden="true" tabindex="-1"></a>simulation_eu <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Simulation"</span>)</span>
+<span id="cb3-292"><a href="#cb3-292" aria-hidden="true" tabindex="-1"></a>simulation_eu <span class="ot">&lt;-</span> <span class="fu">count</span>(simulation_eu, EU_Sales)</span>
+<span id="cb3-293"><a href="#cb3-293" aria-hidden="true" tabindex="-1"></a>sim_eu <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-294"><a href="#cb3-294" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">93</span>){</span>
+<span id="cb3-295"><a href="#cb3-295" aria-hidden="true" tabindex="-1"></a>  sim_eu <span class="ot">&lt;-</span> sim_eu <span class="sc">+</span> simulation_eu[i,<span class="dv">1</span>]<span class="sc">*</span>simulation_eu[i,<span class="dv">2</span>]</span>
+<span id="cb3-296"><a href="#cb3-296" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-297"><a href="#cb3-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-298"><a href="#cb3-298" aria-hidden="true" tabindex="-1"></a>simulation_jp <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Simulation"</span>)</span>
+<span id="cb3-299"><a href="#cb3-299" aria-hidden="true" tabindex="-1"></a>simulation_jp <span class="ot">&lt;-</span> <span class="fu">count</span>(simulation_jp, JP_Sales)</span>
+<span id="cb3-300"><a href="#cb3-300" aria-hidden="true" tabindex="-1"></a>sim_jp <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-301"><a href="#cb3-301" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">70</span>){</span>
+<span id="cb3-302"><a href="#cb3-302" aria-hidden="true" tabindex="-1"></a>  sim_jp <span class="ot">&lt;-</span> sim_jp <span class="sc">+</span> simulation_jp[i,<span class="dv">1</span>]<span class="sc">*</span>simulation_jp[i,<span class="dv">2</span>]</span>
+<span id="cb3-303"><a href="#cb3-303" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-304"><a href="#cb3-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-305"><a href="#cb3-305" aria-hidden="true" tabindex="-1"></a>simulation_other <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Simulation"</span>)</span>
+<span id="cb3-306"><a href="#cb3-306" aria-hidden="true" tabindex="-1"></a>simulation_other <span class="ot">&lt;-</span> <span class="fu">count</span>(simulation_other, Other_Sales)</span>
+<span id="cb3-307"><a href="#cb3-307" aria-hidden="true" tabindex="-1"></a>sim_other <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-308"><a href="#cb3-308" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">39</span>){</span>
+<span id="cb3-309"><a href="#cb3-309" aria-hidden="true" tabindex="-1"></a>  sim_other <span class="ot">&lt;-</span> sim_other <span class="sc">+</span> simulation_other[i,<span class="dv">1</span>]<span class="sc">*</span>simulation_other[i,<span class="dv">2</span>]</span>
+<span id="cb3-310"><a href="#cb3-310" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-311"><a href="#cb3-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-312"><a href="#cb3-312" aria-hidden="true" tabindex="-1"></a>simulation <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">c</span>(sim_na, sim_eu, sim_jp, sim_other))</span>
+<span id="cb3-313"><a href="#cb3-313" aria-hidden="true" tabindex="-1"></a><span class="do">## Sports------------------------------------------------------------------------------------------</span></span>
+<span id="cb3-314"><a href="#cb3-314" aria-hidden="true" tabindex="-1"></a>sports_na <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Sports"</span>)</span>
+<span id="cb3-315"><a href="#cb3-315" aria-hidden="true" tabindex="-1"></a>sports_na <span class="ot">&lt;-</span> <span class="fu">count</span>(sports_na, NA_Sales)</span>
+<span id="cb3-316"><a href="#cb3-316" aria-hidden="true" tabindex="-1"></a>spo_na <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-317"><a href="#cb3-317" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">191</span>){</span>
+<span id="cb3-318"><a href="#cb3-318" aria-hidden="true" tabindex="-1"></a>  spo_na <span class="ot">&lt;-</span> spo_na <span class="sc">+</span> sports_na[i,<span class="dv">1</span>]<span class="sc">*</span>sports_na[i,<span class="dv">2</span>]</span>
+<span id="cb3-319"><a href="#cb3-319" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-320"><a href="#cb3-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-321"><a href="#cb3-321" aria-hidden="true" tabindex="-1"></a>sports_eu <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Sports"</span>)</span>
+<span id="cb3-322"><a href="#cb3-322" aria-hidden="true" tabindex="-1"></a>sports_eu <span class="ot">&lt;-</span> <span class="fu">count</span>(sports_eu, EU_Sales)</span>
+<span id="cb3-323"><a href="#cb3-323" aria-hidden="true" tabindex="-1"></a>spo_eu <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-324"><a href="#cb3-324" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">139</span>){</span>
+<span id="cb3-325"><a href="#cb3-325" aria-hidden="true" tabindex="-1"></a>  spo_eu <span class="ot">&lt;-</span> spo_eu <span class="sc">+</span> sports_eu[i,<span class="dv">1</span>]<span class="sc">*</span>sports_eu[i,<span class="dv">2</span>]</span>
+<span id="cb3-326"><a href="#cb3-326" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-327"><a href="#cb3-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-328"><a href="#cb3-328" aria-hidden="true" tabindex="-1"></a>sports_jp <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Sports"</span>)</span>
+<span id="cb3-329"><a href="#cb3-329" aria-hidden="true" tabindex="-1"></a>sports_jp <span class="ot">&lt;-</span> <span class="fu">count</span>(sports_jp, JP_Sales)</span>
+<span id="cb3-330"><a href="#cb3-330" aria-hidden="true" tabindex="-1"></a>spo_jp <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-331"><a href="#cb3-331" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">91</span>){</span>
+<span id="cb3-332"><a href="#cb3-332" aria-hidden="true" tabindex="-1"></a>  spo_jp <span class="ot">&lt;-</span> spo_jp <span class="sc">+</span> sports_jp[i,<span class="dv">1</span>]<span class="sc">*</span>sports_jp[i,<span class="dv">2</span>]</span>
+<span id="cb3-333"><a href="#cb3-333" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-334"><a href="#cb3-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-335"><a href="#cb3-335" aria-hidden="true" tabindex="-1"></a>sports_other <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Sports"</span>)</span>
+<span id="cb3-336"><a href="#cb3-336" aria-hidden="true" tabindex="-1"></a>sports_other <span class="ot">&lt;-</span> <span class="fu">count</span>(sports_other, Other_Sales)</span>
+<span id="cb3-337"><a href="#cb3-337" aria-hidden="true" tabindex="-1"></a>spo_other <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-338"><a href="#cb3-338" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">78</span>){</span>
+<span id="cb3-339"><a href="#cb3-339" aria-hidden="true" tabindex="-1"></a>  spo_other <span class="ot">&lt;-</span> spo_other <span class="sc">+</span> sports_other[i,<span class="dv">1</span>]<span class="sc">*</span>sports_other[i,<span class="dv">2</span>]</span>
+<span id="cb3-340"><a href="#cb3-340" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-341"><a href="#cb3-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-342"><a href="#cb3-342" aria-hidden="true" tabindex="-1"></a>sports <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">c</span>(spo_na, spo_eu, spo_jp, spo_other))</span>
+<span id="cb3-343"><a href="#cb3-343" aria-hidden="true" tabindex="-1"></a><span class="do">## Strategy----------------------------------------------------------------------------------------</span></span>
+<span id="cb3-344"><a href="#cb3-344" aria-hidden="true" tabindex="-1"></a>strategy_na <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Strategy"</span>)</span>
+<span id="cb3-345"><a href="#cb3-345" aria-hidden="true" tabindex="-1"></a>strategy_na <span class="ot">&lt;-</span> <span class="fu">count</span>(strategy_na, NA_Sales)</span>
+<span id="cb3-346"><a href="#cb3-346" aria-hidden="true" tabindex="-1"></a>stra_na <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-347"><a href="#cb3-347" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">72</span>){</span>
+<span id="cb3-348"><a href="#cb3-348" aria-hidden="true" tabindex="-1"></a>  stra_na <span class="ot">&lt;-</span> stra_na <span class="sc">+</span> strategy_na[i,<span class="dv">1</span>]<span class="sc">*</span>strategy_na[i,<span class="dv">2</span>]</span>
+<span id="cb3-349"><a href="#cb3-349" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-350"><a href="#cb3-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-351"><a href="#cb3-351" aria-hidden="true" tabindex="-1"></a>strategy_eu <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Strategy"</span>)</span>
+<span id="cb3-352"><a href="#cb3-352" aria-hidden="true" tabindex="-1"></a>strategy_eu <span class="ot">&lt;-</span> <span class="fu">count</span>(strategy_eu, EU_Sales)</span>
+<span id="cb3-353"><a href="#cb3-353" aria-hidden="true" tabindex="-1"></a>stra_eu <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-354"><a href="#cb3-354" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">55</span>){</span>
+<span id="cb3-355"><a href="#cb3-355" aria-hidden="true" tabindex="-1"></a>  stra_eu <span class="ot">&lt;-</span> stra_eu <span class="sc">+</span> strategy_eu[i,<span class="dv">1</span>]<span class="sc">*</span>strategy_eu[i,<span class="dv">2</span>]</span>
+<span id="cb3-356"><a href="#cb3-356" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-357"><a href="#cb3-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-358"><a href="#cb3-358" aria-hidden="true" tabindex="-1"></a>strategy_jp <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Strategy"</span>)</span>
+<span id="cb3-359"><a href="#cb3-359" aria-hidden="true" tabindex="-1"></a>strategy_jp <span class="ot">&lt;-</span> <span class="fu">count</span>(strategy_jp, JP_Sales)</span>
+<span id="cb3-360"><a href="#cb3-360" aria-hidden="true" tabindex="-1"></a>stra_jp <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-361"><a href="#cb3-361" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">65</span>){</span>
+<span id="cb3-362"><a href="#cb3-362" aria-hidden="true" tabindex="-1"></a>  stra_jp <span class="ot">&lt;-</span> stra_jp <span class="sc">+</span> strategy_jp[i,<span class="dv">1</span>]<span class="sc">*</span>strategy_jp[i,<span class="dv">2</span>]</span>
+<span id="cb3-363"><a href="#cb3-363" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-364"><a href="#cb3-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-365"><a href="#cb3-365" aria-hidden="true" tabindex="-1"></a>strategy_other <span class="ot">&lt;-</span> <span class="fu">filter</span>(datos, Genre <span class="sc">==</span> <span class="st">"Strategy"</span>)</span>
+<span id="cb3-366"><a href="#cb3-366" aria-hidden="true" tabindex="-1"></a>strategy_other <span class="ot">&lt;-</span> <span class="fu">count</span>(strategy_other, Other_Sales)</span>
+<span id="cb3-367"><a href="#cb3-367" aria-hidden="true" tabindex="-1"></a>stra_other <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-368"><a href="#cb3-368" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">21</span>){</span>
+<span id="cb3-369"><a href="#cb3-369" aria-hidden="true" tabindex="-1"></a>  stra_other <span class="ot">&lt;-</span> stra_other <span class="sc">+</span> strategy_other[i,<span class="dv">1</span>]<span class="sc">*</span>strategy_other[i,<span class="dv">2</span>]</span>
+<span id="cb3-370"><a href="#cb3-370" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-371"><a href="#cb3-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-372"><a href="#cb3-372" aria-hidden="true" tabindex="-1"></a>strategy <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">c</span>(stra_na, stra_eu, stra_jp, stra_other))</span>
+<span id="cb3-373"><a href="#cb3-373" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-374"><a href="#cb3-374" aria-hidden="true" tabindex="-1"></a><span class="do">## Creación del df -&gt; gt --------------------------------------------------------------------------</span></span>
+<span id="cb3-375"><a href="#cb3-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-376"><a href="#cb3-376" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb3-377"><a href="#cb3-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-378"><a href="#cb3-378" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span>df<span class="sc">|&gt;</span></span>
+<span id="cb3-379"><a href="#cb3-379" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rbind</span>(action)</span>
+<span id="cb3-380"><a href="#cb3-380" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df<span class="sc">|&gt;</span></span>
+<span id="cb3-381"><a href="#cb3-381" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rbind</span>(adventure)</span>
+<span id="cb3-382"><a href="#cb3-382" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df<span class="sc">|&gt;</span></span>
+<span id="cb3-383"><a href="#cb3-383" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rbind</span>(fighting)</span>
+<span id="cb3-384"><a href="#cb3-384" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df<span class="sc">|&gt;</span></span>
+<span id="cb3-385"><a href="#cb3-385" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rbind</span>(misc)</span>
+<span id="cb3-386"><a href="#cb3-386" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df<span class="sc">|&gt;</span></span>
+<span id="cb3-387"><a href="#cb3-387" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rbind</span>(platform)</span>
+<span id="cb3-388"><a href="#cb3-388" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df<span class="sc">|&gt;</span></span>
+<span id="cb3-389"><a href="#cb3-389" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rbind</span>(puzzle)</span>
+<span id="cb3-390"><a href="#cb3-390" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df<span class="sc">|&gt;</span></span>
+<span id="cb3-391"><a href="#cb3-391" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rbind</span>(racing)</span>
+<span id="cb3-392"><a href="#cb3-392" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df<span class="sc">|&gt;</span></span>
+<span id="cb3-393"><a href="#cb3-393" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rbind</span>(role)</span>
+<span id="cb3-394"><a href="#cb3-394" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df<span class="sc">|&gt;</span></span>
+<span id="cb3-395"><a href="#cb3-395" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rbind</span>(shooter)</span>
+<span id="cb3-396"><a href="#cb3-396" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df<span class="sc">|&gt;</span></span>
+<span id="cb3-397"><a href="#cb3-397" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rbind</span>(simulation)</span>
+<span id="cb3-398"><a href="#cb3-398" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df<span class="sc">|&gt;</span></span>
+<span id="cb3-399"><a href="#cb3-399" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rbind</span>(sports)</span>
+<span id="cb3-400"><a href="#cb3-400" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df<span class="sc">|&gt;</span></span>
+<span id="cb3-401"><a href="#cb3-401" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rbind</span>(strategy)</span>
+<span id="cb3-402"><a href="#cb3-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-403"><a href="#cb3-403" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Ventas NA"</span>, <span class="st">"Ventas EU"</span>, <span class="st">"Ventas JP"</span>, <span class="st">"Otras ventas"</span>)</span>
+<span id="cb3-404"><a href="#cb3-404" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">Genero =</span> <span class="fu">c</span>(<span class="st">"Acción"</span>, <span class="st">"Aventura"</span>, <span class="st">"Pelea"</span>, <span class="st">"Miscelaneo"</span>, <span class="st">"Plataforma"</span>,</span>
+<span id="cb3-405"><a href="#cb3-405" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Puzle"</span>, <span class="st">"Carreras"</span>, <span class="st">"Rol"</span>, <span class="st">"FPS"</span>, <span class="st">"Simulacion"</span>, <span class="st">"Deportes"</span>, <span class="st">"Estrategia"</span>), df)</span>
+<span id="cb3-406"><a href="#cb3-406" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(df)<span class="sc">|&gt;</span></span>
+<span id="cb3-407"><a href="#cb3-407" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb3-408"><a href="#cb3-408" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Comparación de ventas por género (en millones)"</span>,</span>
+<span id="cb3-409"><a href="#cb3-409" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Tabla 1"</span></span>
+<span id="cb3-410"><a href="#cb3-410" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">|&gt;</span> </span>
+<span id="cb3-411"><a href="#cb3-411" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(</span>
+<span id="cb3-412"><a href="#cb3-412" aria-hidden="true" tabindex="-1"></a>    <span class="at">table.width =</span> <span class="fu">pct</span>(<span class="dv">100</span>)</span>
+<span id="cb3-413"><a href="#cb3-413" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 
-<div id="xgrwgjcrch" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="aldpzwxmyl" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#xgrwgjcrch .gt_table {
+#aldpzwxmyl .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -182,7 +723,7 @@ ul.task-list{list-style: none;}
   border-left-color: #D3D3D3;
 }
 
-#xgrwgjcrch .gt_heading {
+#aldpzwxmyl .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -194,7 +735,7 @@ ul.task-list{list-style: none;}
   border-right-color: #D3D3D3;
 }
 
-#xgrwgjcrch .gt_title {
+#aldpzwxmyl .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -206,7 +747,7 @@ ul.task-list{list-style: none;}
   border-bottom-width: 0;
 }
 
-#xgrwgjcrch .gt_subtitle {
+#aldpzwxmyl .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -218,13 +759,13 @@ ul.task-list{list-style: none;}
   border-top-width: 0;
 }
 
-#xgrwgjcrch .gt_bottom_border {
+#aldpzwxmyl .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xgrwgjcrch .gt_col_headings {
+#aldpzwxmyl .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -239,7 +780,7 @@ ul.task-list{list-style: none;}
   border-right-color: #D3D3D3;
 }
 
-#xgrwgjcrch .gt_col_heading {
+#aldpzwxmyl .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -259,7 +800,7 @@ ul.task-list{list-style: none;}
   overflow-x: hidden;
 }
 
-#xgrwgjcrch .gt_column_spanner_outer {
+#aldpzwxmyl .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -271,15 +812,15 @@ ul.task-list{list-style: none;}
   padding-right: 4px;
 }
 
-#xgrwgjcrch .gt_column_spanner_outer:first-child {
+#aldpzwxmyl .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xgrwgjcrch .gt_column_spanner_outer:last-child {
+#aldpzwxmyl .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xgrwgjcrch .gt_column_spanner {
+#aldpzwxmyl .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -291,7 +832,7 @@ ul.task-list{list-style: none;}
   width: 100%;
 }
 
-#xgrwgjcrch .gt_group_heading {
+#aldpzwxmyl .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -316,7 +857,7 @@ ul.task-list{list-style: none;}
   vertical-align: middle;
 }
 
-#xgrwgjcrch .gt_empty_group_heading {
+#aldpzwxmyl .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -331,15 +872,15 @@ ul.task-list{list-style: none;}
   vertical-align: middle;
 }
 
-#xgrwgjcrch .gt_from_md > :first-child {
+#aldpzwxmyl .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xgrwgjcrch .gt_from_md > :last-child {
+#aldpzwxmyl .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xgrwgjcrch .gt_row {
+#aldpzwxmyl .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -358,7 +899,7 @@ ul.task-list{list-style: none;}
   overflow-x: hidden;
 }
 
-#xgrwgjcrch .gt_stub {
+#aldpzwxmyl .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -371,7 +912,7 @@ ul.task-list{list-style: none;}
   padding-right: 5px;
 }
 
-#xgrwgjcrch .gt_stub_row_group {
+#aldpzwxmyl .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -385,11 +926,11 @@ ul.task-list{list-style: none;}
   vertical-align: top;
 }
 
-#xgrwgjcrch .gt_row_group_first td {
+#aldpzwxmyl .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xgrwgjcrch .gt_summary_row {
+#aldpzwxmyl .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -399,16 +940,16 @@ ul.task-list{list-style: none;}
   padding-right: 5px;
 }
 
-#xgrwgjcrch .gt_first_summary_row {
+#aldpzwxmyl .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xgrwgjcrch .gt_first_summary_row.thick {
+#aldpzwxmyl .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xgrwgjcrch .gt_last_summary_row {
+#aldpzwxmyl .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -418,7 +959,7 @@ ul.task-list{list-style: none;}
   border-bottom-color: #D3D3D3;
 }
 
-#xgrwgjcrch .gt_grand_summary_row {
+#aldpzwxmyl .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -428,7 +969,7 @@ ul.task-list{list-style: none;}
   padding-right: 5px;
 }
 
-#xgrwgjcrch .gt_first_grand_summary_row {
+#aldpzwxmyl .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -438,11 +979,11 @@ ul.task-list{list-style: none;}
   border-top-color: #D3D3D3;
 }
 
-#xgrwgjcrch .gt_striped {
+#aldpzwxmyl .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xgrwgjcrch .gt_table_body {
+#aldpzwxmyl .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -451,7 +992,7 @@ ul.task-list{list-style: none;}
   border-bottom-color: #D3D3D3;
 }
 
-#xgrwgjcrch .gt_footnotes {
+#aldpzwxmyl .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -465,7 +1006,7 @@ ul.task-list{list-style: none;}
   border-right-color: #D3D3D3;
 }
 
-#xgrwgjcrch .gt_footnote {
+#aldpzwxmyl .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -474,7 +1015,7 @@ ul.task-list{list-style: none;}
   padding-right: 5px;
 }
 
-#xgrwgjcrch .gt_sourcenotes {
+#aldpzwxmyl .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -488,7 +1029,7 @@ ul.task-list{list-style: none;}
   border-right-color: #D3D3D3;
 }
 
-#xgrwgjcrch .gt_sourcenote {
+#aldpzwxmyl .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -496,71 +1037,71 @@ ul.task-list{list-style: none;}
   padding-right: 5px;
 }
 
-#xgrwgjcrch .gt_left {
+#aldpzwxmyl .gt_left {
   text-align: left;
 }
 
-#xgrwgjcrch .gt_center {
+#aldpzwxmyl .gt_center {
   text-align: center;
 }
 
-#xgrwgjcrch .gt_right {
+#aldpzwxmyl .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xgrwgjcrch .gt_font_normal {
+#aldpzwxmyl .gt_font_normal {
   font-weight: normal;
 }
 
-#xgrwgjcrch .gt_font_bold {
+#aldpzwxmyl .gt_font_bold {
   font-weight: bold;
 }
 
-#xgrwgjcrch .gt_font_italic {
+#aldpzwxmyl .gt_font_italic {
   font-style: italic;
 }
 
-#xgrwgjcrch .gt_super {
+#aldpzwxmyl .gt_super {
   font-size: 65%;
 }
 
-#xgrwgjcrch .gt_footnote_marks {
+#aldpzwxmyl .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#xgrwgjcrch .gt_asterisk {
+#aldpzwxmyl .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xgrwgjcrch .gt_indent_1 {
+#aldpzwxmyl .gt_indent_1 {
   text-indent: 5px;
 }
 
-#xgrwgjcrch .gt_indent_2 {
+#aldpzwxmyl .gt_indent_2 {
   text-indent: 10px;
 }
 
-#xgrwgjcrch .gt_indent_3 {
+#aldpzwxmyl .gt_indent_3 {
   text-indent: 15px;
 }
 
-#xgrwgjcrch .gt_indent_4 {
+#aldpzwxmyl .gt_indent_4 {
   text-indent: 20px;
 }
 
-#xgrwgjcrch .gt_indent_5 {
+#aldpzwxmyl .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
 <table class="gt_table">
   <thead class="gt_header">
     <tr>
-      <td colspan="5" class="gt_heading gt_title gt_font_normal" style="">Comparación de ventas por género</td>
+      <td colspan="5" class="gt_heading gt_title gt_font_normal" style="">Comparación de ventas por género (en millones)</td>
     </tr>
     <tr>
       <td colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Tabla 1</td>
@@ -643,21 +1184,118 @@ ul.task-list{list-style: none;}
 </div>
 </div>
 </div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/01_grafico-genero-repetido-01.png" class="img-fluid figure-img"></p>
-</figure>
+<div class="cell">
+<details>
+<summary>Mostrar código.</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico 3: adaptación de la tabla 1 a barplot----------------------------------------------------</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>genre <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Acción"</span>, <span class="st">"Aventura"</span>, <span class="st">"Pelea"</span>, <span class="st">"Miscelaneo"</span>, <span class="st">"Plataforma"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Puzle"</span>, <span class="st">"Carreras"</span>, <span class="st">"Rol"</span>, <span class="st">"FPS"</span>, <span class="st">"Simulacion"</span>, <span class="st">"Deportes"</span>, <span class="st">"Estrategia"</span>),<span class="dv">4</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>area <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"Ventas NA"</span>,<span class="dv">12</span>), <span class="fu">rep</span>(<span class="st">"Ventas EU"</span>,<span class="dv">12</span>), <span class="fu">rep</span>(<span class="st">"Ventas JP"</span>,<span class="dv">12</span>), <span class="fu">rep</span>(<span class="st">"Otras ventas"</span>,<span class="dv">12</span>))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>){</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  valores <span class="ot">&lt;-</span> <span class="fu">append</span>(valores, <span class="fu">as.integer</span>(action[i]))</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  valores <span class="ot">&lt;-</span> <span class="fu">append</span>(valores, <span class="fu">as.integer</span>(adventure[i]))</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  valores <span class="ot">&lt;-</span> <span class="fu">append</span>(valores, <span class="fu">as.integer</span>(fighting[i]))</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  valores <span class="ot">&lt;-</span> <span class="fu">append</span>(valores, <span class="fu">as.integer</span>(misc[i]))</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  valores <span class="ot">&lt;-</span> <span class="fu">append</span>(valores, <span class="fu">as.integer</span>(platform[i]))</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  valores <span class="ot">&lt;-</span> <span class="fu">append</span>(valores, <span class="fu">as.integer</span>(puzzle[i]))</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  valores <span class="ot">&lt;-</span> <span class="fu">append</span>(valores, <span class="fu">as.integer</span>(racing[i]))</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  valores <span class="ot">&lt;-</span> <span class="fu">append</span>(valores, <span class="fu">as.integer</span>(role[i]))</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  valores <span class="ot">&lt;-</span> <span class="fu">append</span>(valores, <span class="fu">as.integer</span>(shooter[i]))</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  valores <span class="ot">&lt;-</span> <span class="fu">append</span>(valores, <span class="fu">as.integer</span>(simulation[i]))</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  valores <span class="ot">&lt;-</span> <span class="fu">append</span>(valores, <span class="fu">as.integer</span>(sports[i]))</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  valores <span class="ot">&lt;-</span> <span class="fu">append</span>(valores, <span class="fu">as.integer</span>(strategy[i]))</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(genre, area, valores)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">fill=</span>area, <span class="at">y=</span>valores, <span class="at">x=</span>genre)) <span class="sc">+</span> </span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">"dodge"</span>, <span class="at">stat=</span><span class="st">"identity"</span>)<span class="sc">+</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"género"</span>,</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"ventas"</span>,</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Zona de venta"</span>,</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Ventas por género según área"</span>,</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"(en millones)"</span>,</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Gráfico 3"</span>)<span class="sc">+</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#006C67"</span>,</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"#FFB100"</span>,</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"#F194B4"</span>,</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"#003844"</span>))<span class="sc">+</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="introduccion_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
-<p><img src="images/02_grafico_a%C3%B1o-mayor-lanzamientos-02.png" class="img-fluid"></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/03_grafico-barplot-tabla-01-01.png" class="img-fluid figure-img"></p>
-</figure>
 </div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/05_grafico_piechart-ingresos-por-region.png" class="img-fluid figure-img"></p>
-</figure>
+<div class="cell">
+<details>
+<summary>Mostrar código.</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico 5: Ingresos totales por región ----------------------------------------------------------</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Revenue NA -------------------------------------------------------------------------------------</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>revenue_na <span class="ot">&lt;-</span> <span class="fu">count</span>(datos, NA_Sales)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>rev_na <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">409</span>){</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  rev_na <span class="ot">&lt;-</span> rev_na <span class="sc">+</span> revenue_na[i,<span class="dv">1</span>] <span class="sc">*</span> revenue_na[i,<span class="dv">2</span>]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Revenue EU -------------------------------------------------------------------------------------</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>revenue_eu <span class="ot">&lt;-</span> <span class="fu">count</span>(datos, EU_Sales)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>rev_eu <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">305</span>){</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  rev_eu <span class="ot">&lt;-</span> rev_eu <span class="sc">+</span> revenue_eu[i,<span class="dv">1</span>] <span class="sc">*</span> revenue_eu[i,<span class="dv">2</span>]</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Revenue JP -------------------------------------------------------------------------------------</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>revenue_jp <span class="ot">&lt;-</span> <span class="fu">count</span>(datos, JP_Sales)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>rev_jp <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">244</span>){</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  rev_jp <span class="ot">&lt;-</span> rev_jp <span class="sc">+</span> revenue_jp[i,<span class="dv">1</span>] <span class="sc">*</span> revenue_jp[i,<span class="dv">2</span>]</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="do">## Revenue Other ----------------------------------------------------------------------------------</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>revenue_other <span class="ot">&lt;-</span> <span class="fu">count</span>(datos, Other_Sales)</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>rev_other <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">157</span>){</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  rev_other <span class="ot">&lt;-</span> rev_other <span class="sc">+</span> revenue_other[i,<span class="dv">1</span>] <span class="sc">*</span> revenue_other[i,<span class="dv">2</span>]</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="do">## creando df -&gt; piechart--------------------------------------------------------------------------</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>data_pie <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>data_pie <span class="ot">&lt;-</span> data_pie<span class="sc">|&gt;</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rbind</span>(<span class="fu">as.numeric</span>(rev_na))</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>data_pie <span class="ot">&lt;-</span> data_pie<span class="sc">|&gt;</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rbind</span>(<span class="fu">as.numeric</span>(rev_eu))</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>data_pie <span class="ot">&lt;-</span> data_pie<span class="sc">|&gt;</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rbind</span>(<span class="fu">as.numeric</span>(rev_jp))</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>data_pie <span class="ot">&lt;-</span> data_pie<span class="sc">|&gt;</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rbind</span>(<span class="fu">as.numeric</span>(rev_other))</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>data_pie <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">region =</span> <span class="fu">c</span>(<span class="st">"Norte América"</span>, <span class="st">"Europa"</span>, <span class="st">"Japón"</span>, <span class="st">"Otro"</span>),data_pie)</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(data_pie) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Región"</span>, <span class="st">"Ventas"</span>)</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data_pie, <span class="fu">aes</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y=</span>Ventas, <span class="at">fill=</span>Región)) <span class="sc">+</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">width=</span><span class="dv">1</span>, <span class="at">color=</span><span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(Ventas<span class="sc">/</span><span class="dv">8916</span><span class="sc">*</span><span class="dv">100</span>,<span class="dv">1</span>)),</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>))<span class="sc">+</span> <span class="co">#Preguntar como agregar los %</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>) <span class="sc">+</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#FFB100"</span>,</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"#F194B4"</span>,</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"#003844"</span>,</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"#006C67"</span>))<span class="sc">+</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Gráfico 5"</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">+</span></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="introduccion_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 </section>
 
