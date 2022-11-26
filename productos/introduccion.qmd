@@ -6,6 +6,7 @@ format:
     code-summary: "Mostrar código."
     link-external-icon: true
     link-external-newwindow: true
+    fig-cap-location: top
 editor: visual
 lang: es
 theme: zephyr
@@ -22,13 +23,11 @@ En este reporte analizaremos una base de datos que contiene videojuegos con vent
 
 Es relevante el analizar este tipo de información para tener una idea de cómo se comporta la gente a la hora de comprar una copia tanto física como digital según su continente. Este tipo de analisis favorece en gran parte a las desarrolladoras de juegos, debido a que les ayuda a cómo enfocar su marketing o en qué continente enfocarse más al momento de crear un juego.
 
-Por lo cual, el objetivo de este análisis exploratorio es el entender cómo los datos están distribuidos e idealmente el poder generar conocimiento para la toma de decisiones en el futuro. Por otra parte, el enfoque de este análisis es el explorar lo más posible los datos de la manera más simple, intuitiva e informativa. Para ello, este proyecto se dividirá en 2 partes.
+Por lo cual, el objetivo de este análisis exploratorio es el entender cómo los datos están distribuidos e idealmente el poder generar conocimiento para la toma de decisiones en el futuro. Por otra parte, el enfoque de este es el explorar lo más posible los datos de la manera más simple, intuitiva e informativa. Para ello, principalmente haremos
 
--   Análisis descriptivo: Acá analizaremos datos relevantes tales como las medidas de tendencia central, gráficos de dispersión, entre otros.
+-   Análisis exploratorio: Nos adentraremos en los datos y responderemos algunas preguntas más especificas, que se detallarán más adelante.
 
--   Análisis exploratorio: En esta sección nos adentraremos en los datos y responderemos algunas preguntas más especificas, que se detallarán más adelante.
-
-# Gráficos y tablas
+# Datos
 
 Empezamos familiarizandonos con nuestra base, la cual está compuesta por 11 variables:
 
@@ -37,7 +36,7 @@ Empezamos familiarizandonos con nuestra base, la cual está compuesta por 11 var
 | `Rank`         | numérica | Ranking de ventas totales.                  |
 | `Name`         | caracter | Nombre del juego.                           |
 | `Platform`     | caracter | Plataforma de lanzamiento del juego.        |
-| `Year`         | numérica | Año en el que el juego fué lanzado.         |
+| `Year`         | numérica | Año en el que el juego fue lanzado.         |
 | `Genre`        | caracter | Género del juego.                           |
 | `Publisher`    | caracter | Empresa que publicó el juego.               |
 | `NA_Sales`     | numérica | Ventas en Norte América (en millones).      |
@@ -48,7 +47,9 @@ Empezamos familiarizandonos con nuestra base, la cual está compuesta por 11 var
 
 Analizando nuestras variables, notamos que nuestros datos nos muestran las ventas de videojuegos separadas por continente. Además de contener distintos identificadores para poder empezar nuestro analisis exploratorio.
 
-Lo primero que podríamos preguntarnos al ver esta tabla sería ¿cuál es el género que más se ha vendido a lo largo del tiempo?. Para esto, presentamos el siguiente gráfico
+# Análisis exploratorio
+
+Lo primero que podríamos preguntarnos al ver esta tabla sería ¿cuál es el género que más se ha vendido a lo largo del tiempo? Para esto, presentamos el siguiente gráfico
 
 ```{r}
 #| echo: false
@@ -62,10 +63,14 @@ library(gt)
 library(webshot2)
 library(gtExtras)
 library(here)
+library(treemapify)
+
 ```
 
 ```{r}
 #| message: false
+#| fig-cap: "Género más vendido (1980-2016)"
+#| label: fig-genero-mvendido
 # Importando los datos ----------------------------------------------------------------------------
 
 datos <- read_csv(here("datos/vgsales.csv"))
@@ -75,52 +80,77 @@ datos <- read_csv(here("datos/vgsales.csv"))
 row <- distinct(datos, Genre) # Cuantos géneros hay en la db
 
 unicos_genre <- count(datos, Genre)
-ggplot(unicos_genre)+
-  geom_col(aes(y = reorder(Genre, n),x = n),
-           fill = c("#74d2e7",
-                    "#48a9c5",
-                    "#0085ad",
-                    "#8db9ca",
-                    "#4298b5",
-                    "#005670",
-                    "#00205b",
-                    "#84bd00",
-                    "#efdf00",
-                    "#fe5000",
-                    "#e4002b",
-                    "#da1884")) +
-  labs(title = "Cantidad de videojuegos por género",
-       subtitle = "(en millones)",
-       y = "género",
-       x = NULL,
-       caption = "Gráfico 1")+
-theme_bw()
+ggplot(unicos_genre, aes(area = n, fill = Genre, label = n)) +
+  geom_treemap()+
+  geom_treemap_text(colour = "white",
+                    place = "centre",
+                    size = 15)+
+  scale_fill_discrete(labels=c("Acción", "Aventura", "Pelea", "Miscelaneo", "Plataforma",
+                               "Puzle", "Carreras", "Rol", "FPS", "Simulacion", "Deportes", "Estrategia"))+
+  labs(subtitle = "(unidades en millones)",
+       fill = "Género")+
+  theme_bw()+
+  theme(legend.background = element_rect(fill="gray95", size=.5, linetype="dotted"))
+
 ```
 
-al analizar este histograma, notamos que el género más vendido Acción, con aproximadamente 3300 Millones de copias, lo sigue el género de Deportes con aproximadamente 2400 Millones de copias y en tercera posicion se encuentra Misceláneo, con un aproximado de 1750 Millones copias vendidas.
+notamos que el género más vendido es Acción, con más de 3300 millones de copias, seguido Deportes con aproximadamente 2400 millones de copias y en tercera posicion se encuentra Misceláneo, con un aproximado de 1750 millones copias vendidas.
 
-Sin embargo, si bien es informativo saber cuál es el género más vendido, nos interesa saber el cuándo y donde se presentaron las ventas. Para esto, tenemos los siguientes gráficos
+Si bien este gráfico es informativo, nos surge la duda el saber cuándo y donde se presentaron las ventas. Para esto, tenemos el siguiente gráfico
 
 ```{r}
 #| message: false
+#| fig-cap: "Cantidad de juegos lanzados por año"
+#| label: fig-cant-juegos-xaño
 # Gráfico 2: ¿Cuál fue el año con mayor lanzamientos?----------------------------------------------
 
 unicos_year <- count(datos, Year)
-unicos_year <- filter(unicos_year, Year != "N/A")
+unicos_year <- filter(unicos_year, Year != "N/A",
+                      !row_number() %in% c(38,39))
 ggplot(unicos_year,(aes(x = Year, y = n, group = 1)))+
   geom_line(color = "#0a7d93", size = 1)+
   geom_point(color = "#0f343b", size = 2)+
-  labs(title = "Cantidad de juegos lanzados por año",
-       subtitle = "(en millones)",
+  labs(
        y = "cantidad de videojuegos",
-       x = "años",
-       caption = "Gráfico 2")+
-  scale_x_discrete(breaks = seq(1980, 2020, by = 10))+
+       x = "años")+
+  scale_x_discrete(breaks = seq(1980, 2016, by = 6))+
   theme_bw()
 ```
 
+Podemos observar en la @fig-cant-juegos-xaño, que el año en donde más se lanzaron videojuegos al mercado fué el año 2009, con cerca de 1500 Millones de copias. También, desde ese año en adelante, se genera una tendencia a disminuir la cantidad de videojuegos lanzados. Esto se podría explicar debido a varios factores, una opción podría ser que las desarrolladoras empezaron a preocuparse más en realizar menos lanzamientos pero de una mayor calidad, o bien se podría relacionar con la salida de la séptima generación de videoconsolas (PlayStation 3, Xbox 360, Wii), puestas a disposición del público alrededor del año 2007.
+
+Analizando más detalladamente el año con mayor lanzamiento de videojuegos, llegamos al siguiente gráfico
+
 ```{r}
 #| message: false
+#| fig-cap: "Distribución videojuegos lanzados en el año 2009"
+#| label: fig-dist-juegos-2009
+datos |>
+  filter(Year == 2009) |> 
+  count(Platform) |> 
+  ggplot(aes(x = reorder(Platform,-n), y = n))+
+  geom_bar(stat="identity", fill = "#0a7d93")+
+  labs(x = "plataforma",
+       y = "ventas")+
+  geom_text(aes(label = n),
+            vjust = 1.1,
+            color = "white",
+            fontface = "bold")+
+  theme_bw()
+
+
+```
+
+en este gráfico se puede apreciar claramente la moda de lanzamientos de ese año, el cual fué para la plataforma Nintendo DS, con 405 videojuegos. En segundo lugar tenemos a la Nintendo Wii con 325 videojuegos y en tercer lugar a la Xbox 360, con 173 lanzamientos. Observamos que el primer y segundo lugar de lanzamientos del año 2009 estuvo bajo Nintendo. Esto se puede explicar, al igual que la @fig-cant-juegos-xaño, por la llegada de las consolas de séptima generación, que en este caso vendría por parte de la consola Nintendo DSi y Nintendo Wii, los años 2008 y 2006 respectivamente.[Ver Anexo](https://es.wikipedia.org/wiki/Anexo:Videoconsolas_de_Nintendo)
+
+Cabe destacar que para esta base de datos, la plataforma DS abarca a Nintendo DS, Nintendo DS Lite, Nintendo DSi y Nintendo DSi XL. Sin embargo, todas estas consolas pertenencen a la séptima generación.
+
+
+
+```{r}
+#| message: false
+#| fig-cap: "Ventas por género"
+#| label: fig-tabl-ventas-xgen
 # Tabla 1: Comparativa de ventas por género--------------------------------------------------------
 
 ## Action -----------------------------------------------------------------------------------------
@@ -523,71 +553,138 @@ df <- df|>
 df <- df|>
   rbind(strategy)
 
-colnames(df) <- c("Ventas NA", "Ventas EU", "Ventas JP", "Otras ventas")
+colnames(df) <- c("Ventas_NA", "Ventas_EU", "Ventas_JP", "Otras_ventas")
 df <- cbind(Genero = c("Acción", "Aventura", "Pelea", "Miscelaneo", "Plataforma",
               "Puzle", "Carreras", "Rol", "FPS", "Simulacion", "Deportes", "Estrategia"), df)
 gt(df)|>
   tab_header(
-    title = "Comparación de ventas por género (en millones)",
-    subtitle = "Tabla 1"
+    title = "Comparación de ventas por género",
+    subtitle = "(en millones)",
   )|> 
   tab_options(
     table.width = pct(100)
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "lightgreen"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_NA,
+      rows = Ventas_NA >= 800
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "lightgreen"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_EU,
+      rows = Ventas_EU >= 500
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "lightgreen"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_JP,
+      rows = Ventas_JP >= 350
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "lightgreen"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Otras_ventas,
+      rows = Otras_ventas >= 180
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "indianred2"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_NA,
+      rows = Ventas_NA <= 70
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "indianred2"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_EU,
+      rows = Ventas_EU <= 50
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "indianred2"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_JP,
+      rows = Ventas_JP <= 39
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "indianred2"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Otras_ventas,
+      rows = Otras_ventas <= 12
+    )
   )
 
-
 ```
 
 ```{r}
 #| message: false
-# Gráfico 3: adaptación de la tabla 1 a barplot----------------------------------------------------
+#| fig-cap: "Género más y menos vendido"
+#| label: fig-gen-masmenos-vendido
+# Gráfico: genero mas y menos vendido por región
 
-genre <- rep(c("Acción", "Aventura", "Pelea", "Miscelaneo", "Plataforma",
-           "Puzle", "Carreras", "Rol", "FPS", "Simulacion", "Deportes", "Estrategia"),4)
+genre <- c("Acción","Estrategia","Acción","Estrategia","Rol","FPS","Acción","Estrategia")
 
-area <- c(rep("Ventas NA",12), rep("Ventas EU",12), rep("Ventas JP",12), rep("Otras ventas",12))
+area <- c(rep("Ventas NA",2),rep("Ventas EU",2),rep("Ventas JP",2),rep("Otras ventas",2))
 
-valores <- c()
+valores <- c(as.integer(action[1]),as.integer(strategy[1]),
+            as.integer(action[2]),as.integer(strategy[2]),
+            as.integer(role[3]),as.integer(shooter[3]),
+            as.integer(action[4]),as.integer(strategy[4]))
 
-for(i in 1:4){
-  valores <- append(valores, as.integer(action[i]))
-  valores <- append(valores, as.integer(adventure[i]))
-  valores <- append(valores, as.integer(fighting[i]))
-  valores <- append(valores, as.integer(misc[i]))
-  valores <- append(valores, as.integer(platform[i]))
-  valores <- append(valores, as.integer(puzzle[i]))
-  valores <- append(valores, as.integer(racing[i]))
-  valores <- append(valores, as.integer(role[i]))
-  valores <- append(valores, as.integer(shooter[i]))
-  valores <- append(valores, as.integer(simulation[i]))
-  valores <- append(valores, as.integer(sports[i]))
-  valores <- append(valores, as.integer(strategy[i]))
-}
 data <- data.frame(genre, area, valores)
 
-#ggplot(data, aes(fill=area, y=valores, x=genre)) + 
-#  geom_bar(position="dodge", stat="identity")+
-#  labs(x = "género",
-#       y = "ventas",
-#       fill = "Zona de venta",
-#       title = "Ventas por género según área",
-#       subtitle = "(en millones)",
-#       caption = "Gráfico 3")+
-#  scale_fill_manual(values = c("#006C67",
-#                      "#FFB100",
-#                      "#F194B4",
-#                      "#003844"))+
-#  theme_bw()
+ggplot(data, aes(fill=genre, y=valores, x=reorder(area, -valores))) + 
+  geom_bar(position="dodge", stat="identity")+
+  labs(x = "region",
+       y = "ventas",
+       fill = "Zona de venta",
+       title = "Ventas por género según área",
+       subtitle = "(en millones)")+
+  scale_fill_manual(values = c("#006C67",
+                               "#FFB100",
+                               "#F194B4",
+                               "#003844"))+
+  theme_bw()
+
 ```
 
-![](images/03_grafico-barplot-tabla-01-02.png)
-
-Podemos ver que dado el gráfico 2, que el año en donde más se lanzaron videojuegos al mercado fué el año 2009, con cerca de 1500 Millones de copias. También podemos apreciar que desde ese año en adelante, ocurrió una tendencia a disminuir la cantidad de videojuegos lanzados. Esto se podría explicar debido a varios factores, una opción podría ser que las desarrolladoras empezaron a preocuparse más en realizar menos lanzamientos pero de una mayor calidad, o bien se podría relacionar con la salida de la séptima generación de videoconsolas (PlayStation 3, Xbox 360, Wii), puestas a disposición del público el año 2007 en promedio.
-
-Ahora, analizando la tabla 1, apreciamos que en casi tods los géneros disponibles, Norte América es el lider de ventas. La excepción ocurre para el género de Rol, el cual la región de Japón es la lider en ventas. Esta tendencia no es de extrañar, bien es sabido que a los Nipónes tienen un interés bastante fuerte hacia este tipo de videojuegos. [Ver artículo](http://www.scielo.org.co/pdf/rlcs/v10n1/v10n1a02.pdf)
+Ahora, analizando la @fig-tabl-ventas-xgen, apreciamos que en casi todos los géneros disponibles, la región Norte América es el lider de ventas. La excepción ocurre para el género de Rol, el cual la región de Japón es la lider en ventas. Esta tendencia no es de extrañar, bien es sabido que a los nipónes tienen un interés bastante fuerte hacia este tipo de videojuegos. [Ver artículo](http://www.scielo.org.co/pdf/rlcs/v10n1/v10n1a02.pdf)
 
 ```{r}
 #| message: false
+#| fig-cap: "Ingresos por region"
+#| label: fig-ingresos-region
 # Gráfico 5: Ingresos totales por región ----------------------------------------------------------
 
 ## Revenue NA -------------------------------------------------------------------------------------
@@ -637,14 +734,64 @@ colnames(data_pie) <- c("Región", "Ventas")
 ggplot(data_pie, aes(x="", y=Ventas, fill=Región)) +
   geom_bar(stat="identity", width=1, color="white") +
   geom_text(aes(label = round(Ventas/8916*100,1)),
-            position = position_stack(vjust = 0.5))+ #Preguntar como agregar los %
+            position = position_stack(vjust = 0.5),
+            colour = "white")+
   coord_polar("y") +
+  labs(subtitle = "(valores expresados como porcentaje)")+
   scale_fill_manual(values = c("#FFB100",
                                "#F194B4",
                                "#003844",
                                "#006C67"))+
-  labs(
-    caption = "Gráfico 5"
-  )+
   theme_void()
+```
+
+```{r}
+#| message: false
+#| fig-cap: "Plataforma con más ventas"
+#| label: fig-plat-mas-ventas
+#| fig-width: 10
+# Gráfico xx: Qué plataforma ha vendido más--------------------------------------------------------
+
+datos |> 
+  group_by(Platform) |> 
+  summarise(sum = sum(Global_Sales)) |> 
+  ggplot(aes(x = reorder(Platform, -sum), y = sum))+
+  geom_bar(stat="identity", fill = "#0a7d93" )+
+  labs(x = "plataforma",
+       y = "cantidad de ventas",
+       subtitle = "(en millones)")+
+  theme_bw()
+```
+
+```{r}
+#| message: false
+#| fig-cap: "Videojuego más vendido"
+#| label: fig-juego-mas-vendido
+#| fig-width: 10
+# Gráfico xx: Top 10 juegos más vendidos--------------------------------------------------------------------
+
+aux <- datos |> 
+        group_by(Name) |> 
+        summarise(sum = sum(Global_Sales)) 
+  
+
+aux <- aux[order(aux$sum,decreasing = TRUE), ]
+
+aux <- aux |>
+  slice(1:10)
+
+ggplot(aux, aes(y = reorder(Name,sum), x = sum))+
+  geom_bar(stat="identity", fill = "#0a7d93" )+
+  labs(y = "videojuego",
+       x = "cantidad de ventas",
+       subtitle = "(en millones)")+
+  geom_text(aes(label = Name),
+            hjust = 1.1,
+            color = "white",
+            fontface = "bold")+
+  theme_bw()+
+  theme(axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+  
+
 ```

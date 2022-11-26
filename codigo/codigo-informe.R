@@ -4,6 +4,8 @@ library(ggplot2)
 library(gt)
 library(webshot2)
 library(gtExtras)
+library(here)
+library(treemapify)
 
 # Importando los datos ----------------------------------------------------------------------------
 
@@ -14,45 +16,74 @@ datos <- read_csv("datos/vgsales.csv")
 row <- distinct(datos, Genre) # Cuantos géneros hay en la db
 
 unicos_genre <- count(datos, Genre)
-ggplot(unicos_genre)+
-  geom_col(aes(y = reorder(Genre, n),x = n),
-           fill = c("#74d2e7",
-                    "#48a9c5",
-                    "#0085ad",
-                    "#8db9ca",
-                    "#4298b5",
-                    "#005670",
-                    "#00205b",
-                    "#84bd00",
-                    "#efdf00",
-                    "#fe5000",
-                    "#e4002b",
-                    "#da1884")) +
-  labs(title = "Cantidad de videojuegos por género",
-       subtitle = "(en millones)",
-       y = "género",
-       x = NULL,
-       caption = "Gráfico 1")+
-theme_bw()
 
-ggsave("figuras/01_grafico-genero-repetido.png", width = 10, height = 7)
+ggplot(unicos_genre, aes(area = n, fill = Genre, label = n)) +
+  geom_treemap()+
+  geom_treemap_text(colour = "white",
+                    place = "centre",
+                    size = 15)+
+  scale_fill_discrete(labels=c("Acción", "Aventura", "Pelea", "Miscelaneo", "Plataforma",
+                               "Puzle", "Carreras", "Rol", "FPS", "Simulacion", "Deportes", "Estrategia"))+
+  labs(subtitle = "(unidades en millones)",
+       fill = "Género")+
+  theme_bw()+
+  theme(legend.background = element_rect(fill="gray95", size=.5, linetype="dotted"))
+
+#ggplot(unicos_genre)+
+#  geom_col(aes(y = reorder(Genre, n),x = n),
+#           fill = c("#74d2e7",
+#                    "#48a9c5",
+#                    "#0085ad",
+#                    "#8db9ca",
+#                    "#4298b5",
+#                    "#005670",
+#                    "#00205b",
+#                    "#84bd00",
+#                    "#efdf00",
+#                    "#fe5000",
+#                    "#e4002b",
+#                    "#da1884")) +
+#  labs(title = "Cantidad de videojuegos por género",
+#       subtitle = "(en millones)",
+#       y = "género",
+#       x = NULL,
+#       caption = "Gráfico 1")+
+#theme_bw()
+#
+#ggsave("figuras/01_grafico-genero-repetido.png", width = 10, height = 7)
 
 # Gráfico 2: ¿Cuál fue el año con mayor lanzamientos?----------------------------------------------
 
 unicos_year <- count(datos, Year)
-unicos_year <- filter(unicos_year, Year != "N/A")
+
+unicos_year <- filter(unicos_year, Year != "N/A",
+                      !row_number() %in% c(38,39))
 ggplot(unicos_year,(aes(x = Year, y = n, group = 1)))+
   geom_line(color = "#0a7d93", size = 1)+
   geom_point(color = "#0f343b", size = 2)+
-  labs(title = "Cantidad de juegos lanzados por año",
-       subtitle = "(en millones)",
+  labs(
        y = "cantidad de videojuegos",
-       x = "años",
-       caption = "Gráfico 2")+
-  scale_x_discrete(breaks = seq(1980, 2020, by = 10))+
+       x = "años")+
+  scale_x_discrete(breaks = seq(1980, 2016, by = 6))+
   theme_bw()
 
-ggsave("figuras/02_grafico_año-mayor-lanzamientos.png", width = 10, height = 7)
+#ggsave("figuras/02_grafico_año-mayor-lanzamientos.png", width = 10, height = 7)
+
+# Gráfico xx: Dado el año 2009, ver la distribución de juegos lanzados ----------------------------
+
+datos |>
+  filter(Year == 2009) |> 
+  count(Platform) |> 
+  ggplot(aes(x = reorder(Platform,-n), y = n))+
+  geom_bar(stat="identity", fill = "#0a7d93")+
+  labs(x = "plataforma",
+       y = "ventas")+
+  geom_text(aes(label = n),
+            vjust = 1.1,
+            color = "white",
+            fontface = "bold")+
+  theme_bw()
+
 
 # Tabla 1: Comparativa de ventas por género--------------------------------------------------------
 
@@ -456,60 +487,165 @@ df <- df|>
 df <- df|>
   rbind(strategy)
 
-colnames(df) <- c("Ventas NA", "Ventas EU", "Ventas JP", "Otras ventas")
+colnames(df) <- c("Ventas_NA", "Ventas_EU", "Ventas_JP", "Otras_ventas")
 df <- cbind(Genero = c("Acción", "Aventura", "Pelea", "Miscelaneo", "Plataforma",
               "Puzle", "Carreras", "Rol", "FPS", "Simulacion", "Deportes", "Estrategia"), df)
 gt(df)|>
   tab_header(
-    title = "Comparación de ventas por género (en millones)",
-    subtitle = "Tabla 1",
+    title = "Comparación de ventas por género",
+    subtitle = "(en millones)",
   )|> 
   tab_options(
     table.width = pct(100)
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "lightgreen"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_NA,
+      rows = Ventas_NA >= 800
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "lightgreen"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_EU,
+      rows = Ventas_EU >= 500
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "lightgreen"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_JP,
+      rows = Ventas_JP >= 350
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "lightgreen"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Otras_ventas,
+      rows = Otras_ventas >= 180
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "indianred2"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_NA,
+      rows = Ventas_NA <= 70
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "indianred2"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_EU,
+      rows = Ventas_EU <= 50
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "indianred2"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_JP,
+      rows = Ventas_JP <= 39
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "indianred2"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Otras_ventas,
+      rows = Otras_ventas <= 12
+    )
   )
 
+# Gráfico: genero mas y menos vendido por región
 
+genre <- c("Acción","Estrategia","Acción","Estrategia","Rol","FPS","Acción","Estrategia")
 
-# Gráfico 3: adaptación de la tabla 1 a barplot----------------------------------------------------
+area <- c(rep("Ventas NA",2),rep("Ventas EU",2),rep("Ventas JP",2),rep("Otras ventas",2))
 
-genre <- rep(c("Acción", "Aventura", "Pelea", "Miscelaneo", "Plataforma",
-           "Puzle", "Carreras", "Rol", "FPS", "Simulacion", "Deportes", "Estrategia"),4)
+valores <- c(as.integer(action[1]),as.integer(strategy[1]),
+            as.integer(action[2]),as.integer(strategy[2]),
+            as.integer(role[3]),as.integer(shooter[3]),
+            as.integer(action[4]),as.integer(strategy[4]))
 
-area <- c(rep("Ventas NA",12), rep("Ventas EU",12), rep("Ventas JP",12), rep("Otras ventas",12))
-
-valores <- c()
-
-for(i in 1:4){
-  valores <- append(valores, as.integer(action[i]))
-  valores <- append(valores, as.integer(adventure[i]))
-  valores <- append(valores, as.integer(fighting[i]))
-  valores <- append(valores, as.integer(misc[i]))
-  valores <- append(valores, as.integer(platform[i]))
-  valores <- append(valores, as.integer(puzzle[i]))
-  valores <- append(valores, as.integer(racing[i]))
-  valores <- append(valores, as.integer(role[i]))
-  valores <- append(valores, as.integer(shooter[i]))
-  valores <- append(valores, as.integer(simulation[i]))
-  valores <- append(valores, as.integer(sports[i]))
-  valores <- append(valores, as.integer(strategy[i]))
-}
 data <- data.frame(genre, area, valores)
 
-ggplot(data, aes(fill=area, y=valores, x=genre)) + 
+ggplot(data, aes(fill=genre, y=valores, x=reorder(area, -valores))) + 
   geom_bar(position="dodge", stat="identity")+
-  labs(x = "género",
+  labs(x = "region",
        y = "ventas",
        fill = "Zona de venta",
        title = "Ventas por género según área",
-       subtitle = "(en millones)",
-       caption = "Gráfico 3")+
+       subtitle = "(en millones)")+
   scale_fill_manual(values = c("#006C67",
-                      "#FFB100",
-                      "#F194B4",
-                      "#003844"))+
+                               "#FFB100",
+                               "#F194B4",
+                               "#003844"))+
   theme_bw()
 
-ggsave("figuras/03_grafico-barplot-tabla-01.png", width = 10, height = 7)
+
+## Gráfico 3: adaptación de la tabla 1 a barplot----------------------------------------------------
+#
+#genre <- rep(c("Acción", "Aventura", "Pelea", "Miscelaneo", "Plataforma",
+#           "Puzle", "Carreras", "Rol", "FPS", "Simulacion", "Deportes", "Estrategia"),4)
+#
+#area <- c(rep("Ventas NA",12), rep("Ventas EU",12), rep("Ventas JP",12), rep("Otras ventas",12))
+#
+#valores <- c()
+#
+#for(i in 1:4){
+#  valores <- append(valores, as.integer(action[i]))
+#  valores <- append(valores, as.integer(adventure[i]))
+#  valores <- append(valores, as.integer(fighting[i]))
+#  valores <- append(valores, as.integer(misc[i]))
+#  valores <- append(valores, as.integer(platform[i]))
+#  valores <- append(valores, as.integer(puzzle[i]))
+#  valores <- append(valores, as.integer(racing[i]))
+#  valores <- append(valores, as.integer(role[i]))
+#  valores <- append(valores, as.integer(shooter[i]))
+#  valores <- append(valores, as.integer(simulation[i]))
+#  valores <- append(valores, as.integer(sports[i]))
+#  valores <- append(valores, as.integer(strategy[i]))
+#}
+#data <- data.frame(genre, area, valores)
+#
+#ggplot(data, aes(fill=area, y=valores, x=genre)) + 
+#  geom_bar(position="dodge", stat="identity")+
+#  labs(x = "género",
+#       y = "ventas",
+#       fill = "Zona de venta",
+#       title = "Ventas por género según área",
+#       subtitle = "(en millones)",
+#       caption = "Gráfico 3")+
+#  scale_fill_manual(values = c("#006C67",
+#                      "#FFB100",
+#                      "#F194B4",
+#                      "#003844"))+
+#  theme_bw()
+#
+#ggsave("figuras/03_grafico-barplot-tabla-01.png", width = 10, height = 7)
 
 # Gráfico 4: Top 20 publicante(cantidad) ----------------------------------------------------------
 
@@ -565,16 +701,58 @@ colnames(data_pie) <- c("Región", "Ventas")
 ggplot(data_pie, aes(x="", y=Ventas, fill=Región)) +
   geom_bar(stat="identity", width=1, color="white") +
   geom_text(aes(label = round(Ventas/8916*100,1)),
-            position = position_stack(vjust = 0.5))+ #Preguntar como agregar los %
+            position = position_stack(vjust = 0.5),
+            colour = "white")+ #Preguntar como agregar los %
   coord_polar("y") +
+  labs(subtitle = "(valores expresados como porcentaje)")+
   scale_fill_manual(values = c("#FFB100",
                                "#F194B4",
                                "#003844",
                                "#006C67"))+
-  labs(
-    caption = "Gráfico 5"
-  )+
   theme_void()
 
 #ggsave("figuras/05_grafico_piechart-ingresos-por-region.png", width = 10, height = 7)
+
+
+# Gráfico xx: Qué plataforma ha vendido más--------------------------------------------------------
+
+datos |> 
+  group_by(Platform) |> 
+  summarise(sum = sum(Global_Sales)) |> 
+  ggplot(aes(x = reorder(Platform, -sum), y = sum))+
+  geom_bar(stat="identity", fill = "#0a7d93" )+
+  labs(x = "plataforma",
+       y = "cantidad de ventas",
+       subtitle = "(en millones)")+
+  theme_bw()
+
+# Gráfico xx: Top 10 juegos más vendidos--------------------------------------------------------------------
+
+aux <- datos |> 
+        group_by(Name) |> 
+        summarise(sum = sum(Global_Sales)) 
+  
+
+aux <- aux[order(aux$sum,decreasing = TRUE), ]
+
+aux <- aux |>
+  slice(1:10)
+
+ggplot(aux, aes(y = reorder(Name,sum), x = sum))+
+  geom_bar(stat="identity", fill = "#0a7d93" )+
+  labs(y = "videojuego",
+       x = "cantidad de ventas",
+       subtitle = "(en millones)")+
+  geom_text(aes(label = Name),
+            hjust = 1.1,
+            color = "white",
+            fontface = "bold")+
+  theme_bw()+
+  theme(axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+  
+  
+
+
+
 
