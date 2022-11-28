@@ -6,6 +6,7 @@ library(webshot2)
 library(gtExtras)
 library(here)
 library(treemapify)
+library(extrafont)
 
 # Importando los datos ----------------------------------------------------------------------------
 
@@ -596,13 +597,13 @@ ggplot(data, aes(fill=genre, y=valores, x=reorder(area, -valores))) +
   geom_bar(position="dodge", stat="identity")+
   labs(x = "region",
        y = "ventas",
-       fill = "Zona de venta",
+       fill = "Género",
        title = "Ventas por género según área",
        subtitle = "(en millones)")+
-  scale_fill_manual(values = c("#006C67",
-                               "#FFB100",
-                               "#F194B4",
-                               "#003844"))+
+  scale_fill_manual(values = c("#84b6f4",
+                               "#fdfd96",
+                               "#ff6961",
+                               "#fdcae1"))+
   theme_bw()
 
 
@@ -702,7 +703,8 @@ ggplot(data_pie, aes(x="", y=Ventas, fill=Región)) +
   geom_bar(stat="identity", width=1, color="white") +
   geom_text(aes(label = round(Ventas/8916*100,1)),
             position = position_stack(vjust = 0.5),
-            colour = "white")+ #Preguntar como agregar los %
+            colour = "white",
+            size = 7)+ 
   coord_polar("y") +
   labs(subtitle = "(valores expresados como porcentaje)")+
   scale_fill_manual(values = c("#FFB100",
@@ -751,8 +753,5 @@ ggplot(aux, aes(y = reorder(Name,sum), x = sum))+
   theme(axis.text.y=element_blank(),
         axis.ticks.y=element_blank())
   
-  
-
-
 
 

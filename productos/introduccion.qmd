@@ -13,7 +13,12 @@ theme: zephyr
 toc: true
 ---
 
-# Introducción
+## Resumen
+
+Nos encontramos en un tiempo en donde la evolución de la tecnología ha avanzado lo suficiente como para reemplazar los tradicionales juegos de mesas, encuentros presenciales con amigos y/o familia. En lo que se enfoca este informe es en analizar los videojuegos, precisamente en cómo estos se han posicionado en el mercado a tal punto que es la industria con mayor flujo de dinero. Además de encontrar resultados interesantes como qué empresa se situa como la con mayor ganancia, o la con mayor ventas, tanto a nivel regional (continental) como global.
+
+
+## Introducción
 
 En la historia, hemos visto cómo los videojuegos han ido evolucionando a medida que transcurre el tiempo. Podemos ver el cómo van mejorando sus motores gráficos, como también el catálogo de géneros de estos.
 
@@ -27,7 +32,9 @@ Por lo cual, el objetivo de este análisis exploratorio es el entender cómo los
 
 -   Análisis exploratorio: Nos adentraremos en los datos y responderemos algunas preguntas más especificas, que se detallarán más adelante.
 
-# Datos
+## Datos
+
+Los datos a utilizar se obtuvieron de [Kaggle](https://www.kaggle.com/datasets/gregorut/videogamesales), una plataforma comunitaria para Data Scientists y entusiastas del machine learning.
 
 Empezamos familiarizandonos con nuestra base, la cual está compuesta por 11 variables:
 
@@ -45,11 +52,13 @@ Empezamos familiarizandonos con nuestra base, la cual está compuesta por 11 var
 | `Other_Sales`  | numérica | Ventas en el resto del mundo (en millones). |
 | `Global_Sales` | numérica | Ventas mundiales totales (en millones).     |
 
-Analizando nuestras variables, notamos que nuestros datos nos muestran las ventas de videojuegos separadas por continente. Además de contener distintos identificadores para poder empezar nuestro analisis exploratorio.
+Realizando un pequeño análisis de las variables, notamos que los datos nos muestran las ventas de videojuegos separadas por continente. Además de contener distintos identificadores para poder empezar nuestro analisis exploratorio.
 
-# Análisis exploratorio
+En este reporte se utilizarán todas las variables presentadas, y además no se necesita realizar ningun preprocesamiento de datos, esto gracias a que la base se encuentra completa y ordenada.
 
-Lo primero que podríamos preguntarnos al ver esta tabla sería ¿cuál es el género que más se ha vendido a lo largo del tiempo? Para esto, presentamos el siguiente gráfico
+## Análisis exploratorio
+
+Lo primero que podríamos preguntarnos al ver esta tabla sería ¿cuál es el género que más se ha vendido a lo largo del tiempo?
 
 ```{r}
 #| echo: false
@@ -64,6 +73,7 @@ library(webshot2)
 library(gtExtras)
 library(here)
 library(treemapify)
+library(extrafont)
 
 ```
 
@@ -96,7 +106,7 @@ ggplot(unicos_genre, aes(area = n, fill = Genre, label = n)) +
 
 notamos que el género más vendido es Acción, con más de 3300 millones de copias, seguido Deportes con aproximadamente 2400 millones de copias y en tercera posicion se encuentra Misceláneo, con un aproximado de 1750 millones copias vendidas.
 
-Si bien este gráfico es informativo, nos surge la duda el saber cuándo y donde se presentaron las ventas. Para esto, tenemos el siguiente gráfico
+Si bien este gráfico es informativo y de gran utilidad, nos surge la duda el saber cuándo y donde se presentaron las ventas. Para esto, tenemos el siguiente gráfico.
 
 ```{r}
 #| message: false
@@ -119,7 +129,7 @@ ggplot(unicos_year,(aes(x = Year, y = n, group = 1)))+
 
 Podemos observar en la @fig-cant-juegos-xaño, que el año en donde más se lanzaron videojuegos al mercado fué el año 2009, con cerca de 1500 Millones de copias. También, desde ese año en adelante, se genera una tendencia a disminuir la cantidad de videojuegos lanzados. Esto se podría explicar debido a varios factores, una opción podría ser que las desarrolladoras empezaron a preocuparse más en realizar menos lanzamientos pero de una mayor calidad, o bien se podría relacionar con la salida de la séptima generación de videoconsolas (PlayStation 3, Xbox 360, Wii), puestas a disposición del público alrededor del año 2007.
 
-Analizando más detalladamente el año con mayor lanzamiento de videojuegos, llegamos al siguiente gráfico
+Analizando más detalladamente el año con mayor lanzamiento de videojuegos, se nos presenta el siguiente gráfico.
 
 ```{r}
 #| message: false
@@ -141,11 +151,33 @@ datos |>
 
 ```
 
-en este gráfico se puede apreciar claramente la moda de lanzamientos de ese año, el cual fué para la plataforma Nintendo DS, con 405 videojuegos. En segundo lugar tenemos a la Nintendo Wii con 325 videojuegos y en tercer lugar a la Xbox 360, con 173 lanzamientos. Observamos que el primer y segundo lugar de lanzamientos del año 2009 estuvo bajo Nintendo. Esto se puede explicar, al igual que la @fig-cant-juegos-xaño, por la llegada de las consolas de séptima generación, que en este caso vendría por parte de la consola Nintendo DSi y Nintendo Wii, los años 2008 y 2006 respectivamente.[Ver Anexo](https://es.wikipedia.org/wiki/Anexo:Videoconsolas_de_Nintendo)
+Se aprecia claramente la moda de lanzamientos de ese año, la cual fué para la plataforma Nintendo DS, con 405 videojuegos. En segundo lugar tenemos a la Nintendo Wii con 325 videojuegos y en tercer lugar a la Xbox 360, con 173 lanzamientos. Notamos que el primer y segundo lugar de lanzamientos del año 2009 estuvo bajo Nintendo. Esto se puede explicar, al igual que la @fig-cant-juegos-xaño, por la llegada de las consolas de séptima generación, que en este caso vendría por parte de la consola Nintendo DSi y Nintendo Wii, los años 2008 y 2006 respectivamente.[Ver Anexo](https://es.wikipedia.org/wiki/Anexo:Videoconsolas_de_Nintendo)
 
 Cabe destacar que para esta base de datos, la plataforma DS abarca a Nintendo DS, Nintendo DS Lite, Nintendo DSi y Nintendo DSi XL. Sin embargo, todas estas consolas pertenencen a la séptima generación.
 
+Devolviendonos un poco del foco de Nintendo, otra pregunta bastante relevante sería el cuestionarnos si esta empresa de entretenimiento ha sido la plataforma con más ventas a traves del tiempo.
 
+```{r}
+#| message: false
+#| fig-cap: "Plataforma con más ventas"
+#| label: fig-plat-mas-ventas
+#| fig-width: 10
+# Gráfico xx: Qué plataforma ha vendido más--------------------------------------------------------
+
+datos |> 
+  group_by(Platform) |> 
+  summarise(sum = sum(Global_Sales)) |> 
+  ggplot(aes(x = reorder(Platform, -sum), y = sum))+
+  geom_bar(stat="identity", fill = "#0a7d93" )+
+  labs(x = "plataforma",
+       y = "cantidad de ventas",
+       subtitle = "(en millones)")+
+  theme_bw()
+```
+
+nos percatamos que la plataforma con más ventas históricamente es la PS2 (Playstation 2), con más de 1200 millones de copias de videojuegos vendidas. Esto se puede explicar dado que esta consola fué lanzada a inicios del 2000 4 años antes que la Nintendo DS y 6 años de la Nintendo Wii, además de ser la videoconsola más vendida de todos los tiempos, con más de 155 millones de unidades. [Ver Artículo](https://es.wikipedia.org/wiki/PlayStation_2)
+
+Siguiendo con el análisis, otra pregunta que surge es cuál es género más y menos vendido. Para esto usamos una tabla para mayor facilidad de indentificar el mayor y menor valor.
 
 ```{r}
 #| message: false
@@ -647,6 +679,10 @@ gt(df)|>
 
 ```
 
+en esta tabla están destacados con color verde el total de ventas del género más popular en base a copias vendidas por región, y en color rojo el menos popular.
+
+Luego, si presentamos las particularidades de cada región en un gráfico de barras para mejor apreciación.
+
 ```{r}
 #| message: false
 #| fig-cap: "Género más y menos vendido"
@@ -668,18 +704,59 @@ ggplot(data, aes(fill=genre, y=valores, x=reorder(area, -valores))) +
   geom_bar(position="dodge", stat="identity")+
   labs(x = "region",
        y = "ventas",
-       fill = "Zona de venta",
+       fill = "Género",
        title = "Ventas por género según área",
        subtitle = "(en millones)")+
-  scale_fill_manual(values = c("#006C67",
-                               "#FFB100",
-                               "#F194B4",
-                               "#003844"))+
+  scale_fill_manual(values = c("#84b6f4",
+                               "#fdfd96",
+                               "#ff6961",
+                               "#fdcae1"))+
   theme_bw()
 
 ```
 
-Ahora, analizando la @fig-tabl-ventas-xgen, apreciamos que en casi todos los géneros disponibles, la región Norte América es el lider de ventas. La excepción ocurre para el género de Rol, el cual la región de Japón es la lider en ventas. Esta tendencia no es de extrañar, bien es sabido que a los nipónes tienen un interés bastante fuerte hacia este tipo de videojuegos. [Ver artículo](http://www.scielo.org.co/pdf/rlcs/v10n1/v10n1a02.pdf)
+Analizando la @fig-gen-masmenos-vendido, notamos que en todas las regiones, a excepción de Japón se presenta el mismo patrón. El género de acción es el más vendido y estrategia el con menos ventas.
+
+Enfocandonos en la región de Japón, su genero más popular en ventas es Rol, mientras que el menos popular es el de FPS. Esta tendencia no es de extrañar, bien es sabido que a los nipónes tienen un interés bastante fuerte hacia este tipo de videojuegos. [Ver artículo](http://www.scielo.org.co/pdf/rlcs/v10n1/v10n1a02.pdf)
+
+Siguiendo con la misma idea de analisis, es correcto el preguntarse cual es el juego más y menos vendido, para esto se nos presenta el siguiente gráfico.
+
+```{r}
+#| message: false
+#| fig-cap: "Videojuego más vendido"
+#| label: fig-juego-mas-vendido
+#| fig-width: 10
+# Gráfico xx: Top 10 juegos más vendidos--------------------------------------------------------------------
+
+aux <- datos |> 
+        group_by(Name) |> 
+        summarise(sum = sum(Global_Sales)) 
+  
+
+aux <- aux[order(aux$sum,decreasing = TRUE), ]
+
+aux <- aux |>
+  slice(1:10)
+
+ggplot(aux, aes(y = reorder(Name,sum), x = sum))+
+  geom_bar(stat="identity", fill = "#0a7d93" )+
+  labs(y = "videojuego",
+       x = "cantidad de ventas",
+       subtitle = "(en millones)")+
+  geom_text(aes(label = Name),
+            hjust = 1.1,
+            color = "white",
+            fontface = "bold")+
+  theme_bw()+
+  theme(axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+  
+
+```
+
+Acá podemos ver claramente que el videojuego con mayor ventas a traves de la historia es Wii Sports. Otro resultado del cual no dudar, debido a lo comentado anteriormente de Nintedo. Luego, para saber el videojuego menos vendido en teoría debiesemos hacer el mismo procedimiento anterior, sin embargo la base de datos se limita a almacenar videojuegos con ventas mayores o iguales a 100.000 copias vendidas. Por lo cual, nos es imposible saber cual realmente es el con menor popularidad.
+
+Por ultimo, vamos a ver la proporción de ventas historicas según región. 
 
 ```{r}
 #| message: false
@@ -735,7 +812,8 @@ ggplot(data_pie, aes(x="", y=Ventas, fill=Región)) +
   geom_bar(stat="identity", width=1, color="white") +
   geom_text(aes(label = round(Ventas/8916*100,1)),
             position = position_stack(vjust = 0.5),
-            colour = "white")+
+            colour = "white",
+            size = 7)+
   coord_polar("y") +
   labs(subtitle = "(valores expresados como porcentaje)")+
   scale_fill_manual(values = c("#FFB100",
@@ -745,53 +823,8 @@ ggplot(data_pie, aes(x="", y=Ventas, fill=Región)) +
   theme_void()
 ```
 
-```{r}
-#| message: false
-#| fig-cap: "Plataforma con más ventas"
-#| label: fig-plat-mas-ventas
-#| fig-width: 10
-# Gráfico xx: Qué plataforma ha vendido más--------------------------------------------------------
+Vemos que el 49.3% de las ventas globales las abarca la región de Norte América, seguido de Europa con un 27.3%. Esta proporción no es nueva en el mercado de los videojuegos, ya que anteriormente se han realizado estudios acerca del mundo de la industria de los videojuegos, tal como indica la [Revista de estudios de juventud](http://www.injuve.es/sites/default/files/Revista98_completa.pdf), la cual afirma que Estados Unidos que el año 2008 facturó aproximadamente 22.000 millones de dólares.
 
-datos |> 
-  group_by(Platform) |> 
-  summarise(sum = sum(Global_Sales)) |> 
-  ggplot(aes(x = reorder(Platform, -sum), y = sum))+
-  geom_bar(stat="identity", fill = "#0a7d93" )+
-  labs(x = "plataforma",
-       y = "cantidad de ventas",
-       subtitle = "(en millones)")+
-  theme_bw()
-```
 
-```{r}
-#| message: false
-#| fig-cap: "Videojuego más vendido"
-#| label: fig-juego-mas-vendido
-#| fig-width: 10
-# Gráfico xx: Top 10 juegos más vendidos--------------------------------------------------------------------
 
-aux <- datos |> 
-        group_by(Name) |> 
-        summarise(sum = sum(Global_Sales)) 
-  
 
-aux <- aux[order(aux$sum,decreasing = TRUE), ]
-
-aux <- aux |>
-  slice(1:10)
-
-ggplot(aux, aes(y = reorder(Name,sum), x = sum))+
-  geom_bar(stat="identity", fill = "#0a7d93" )+
-  labs(y = "videojuego",
-       x = "cantidad de ventas",
-       subtitle = "(en millones)")+
-  geom_text(aes(label = Name),
-            hjust = 1.1,
-            color = "white",
-            fontface = "bold")+
-  theme_bw()+
-  theme(axis.text.y=element_blank(),
-        axis.ticks.y=element_blank())
-  
-
-```
