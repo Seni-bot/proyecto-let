@@ -28,30 +28,10 @@ ggplot(unicos_genre, aes(area = n, fill = Genre, label = n)) +
   labs(subtitle = "(unidades en millones)",
        fill = "Género")+
   theme_bw()+
-  theme(legend.background = element_rect(fill="gray95", size=.5, linetype="dotted"))
+  theme(legend.background = element_rect(fill="gray95", size=.5, linetype="dotted"))+
+  theme(text = element_text(family = "mono"))
 
-#ggplot(unicos_genre)+
-#  geom_col(aes(y = reorder(Genre, n),x = n),
-#           fill = c("#74d2e7",
-#                    "#48a9c5",
-#                    "#0085ad",
-#                    "#8db9ca",
-#                    "#4298b5",
-#                    "#005670",
-#                    "#00205b",
-#                    "#84bd00",
-#                    "#efdf00",
-#                    "#fe5000",
-#                    "#e4002b",
-#                    "#da1884")) +
-#  labs(title = "Cantidad de videojuegos por género",
-#       subtitle = "(en millones)",
-#       y = "género",
-#       x = NULL,
-#       caption = "Gráfico 1")+
-#theme_bw()
-#
-#ggsave("figuras/01_grafico-genero-repetido.png", width = 10, height = 7)
+ggsave("figuras/01_grafico-genero-repetido.png", width = 10, height = 7)
 
 # Gráfico 2: ¿Cuál fue el año con mayor lanzamientos?----------------------------------------------
 
@@ -66,11 +46,12 @@ ggplot(unicos_year,(aes(x = Year, y = n, group = 1)))+
        y = "cantidad de videojuegos",
        x = "años")+
   scale_x_discrete(breaks = seq(1980, 2016, by = 6))+
-  theme_bw()
+  theme_bw()+
+  theme(text = element_text(family = "mono"))
 
-#ggsave("figuras/02_grafico_año-mayor-lanzamientos.png", width = 10, height = 7)
+ggsave("figuras/02_grafico_año-mayor-lanzamientos.png", width = 10, height = 7)
 
-# Gráfico xx: Dado el año 2009, ver la distribución de juegos lanzados ----------------------------
+# Gráfico 3: Dado el año 2009, ver la distribución de juegos lanzados ----------------------------
 
 datos |>
   filter(Year == 2009) |> 
@@ -83,8 +64,10 @@ datos |>
             vjust = 1.1,
             color = "white",
             fontface = "bold")+
-  theme_bw()
+  theme_bw()+
+  theme(text = element_text(family = "mono"))
 
+ggsave("figuras/03_2009-distribucion-juegos.png", width = 10, height = 7)
 
 # Tabla 1: Comparativa de ventas por género--------------------------------------------------------
 
@@ -578,9 +561,9 @@ gt(df)|>
       columns = Otras_ventas,
       rows = Otras_ventas <= 12
     )
-  )
+  ) 
 
-# Gráfico: genero mas y menos vendido por región
+# Gráfico 4: genero mas y menos vendido por región------------------------------------------------
 
 genre <- c("Acción","Estrategia","Acción","Estrategia","Rol","FPS","Acción","Estrategia")
 
@@ -604,53 +587,10 @@ ggplot(data, aes(fill=genre, y=valores, x=reorder(area, -valores))) +
                                "#fdfd96",
                                "#ff6961",
                                "#fdcae1"))+
-  theme_bw()
+  theme_bw()+
+  theme(text = element_text(family = "mono"))
 
-
-## Gráfico 3: adaptación de la tabla 1 a barplot----------------------------------------------------
-#
-#genre <- rep(c("Acción", "Aventura", "Pelea", "Miscelaneo", "Plataforma",
-#           "Puzle", "Carreras", "Rol", "FPS", "Simulacion", "Deportes", "Estrategia"),4)
-#
-#area <- c(rep("Ventas NA",12), rep("Ventas EU",12), rep("Ventas JP",12), rep("Otras ventas",12))
-#
-#valores <- c()
-#
-#for(i in 1:4){
-#  valores <- append(valores, as.integer(action[i]))
-#  valores <- append(valores, as.integer(adventure[i]))
-#  valores <- append(valores, as.integer(fighting[i]))
-#  valores <- append(valores, as.integer(misc[i]))
-#  valores <- append(valores, as.integer(platform[i]))
-#  valores <- append(valores, as.integer(puzzle[i]))
-#  valores <- append(valores, as.integer(racing[i]))
-#  valores <- append(valores, as.integer(role[i]))
-#  valores <- append(valores, as.integer(shooter[i]))
-#  valores <- append(valores, as.integer(simulation[i]))
-#  valores <- append(valores, as.integer(sports[i]))
-#  valores <- append(valores, as.integer(strategy[i]))
-#}
-#data <- data.frame(genre, area, valores)
-#
-#ggplot(data, aes(fill=area, y=valores, x=genre)) + 
-#  geom_bar(position="dodge", stat="identity")+
-#  labs(x = "género",
-#       y = "ventas",
-#       fill = "Zona de venta",
-#       title = "Ventas por género según área",
-#       subtitle = "(en millones)",
-#       caption = "Gráfico 3")+
-#  scale_fill_manual(values = c("#006C67",
-#                      "#FFB100",
-#                      "#F194B4",
-#                      "#003844"))+
-#  theme_bw()
-#
-#ggsave("figuras/03_grafico-barplot-tabla-01.png", width = 10, height = 7)
-
-# Gráfico 4: Top 20 publicante(cantidad) ----------------------------------------------------------
-
-publicantes <- count(datos, Publisher) # Preguntar como hacer sort de esto
+ggsave("figuras/04_genero-mas-y-menos-vendido.png", width = 10, height = 7)
 
 
 # Gráfico 5: Ingresos totales por región ----------------------------------------------------------
@@ -711,12 +651,13 @@ ggplot(data_pie, aes(x="", y=Ventas, fill=Región)) +
                                "#F194B4",
                                "#003844",
                                "#006C67"))+
-  theme_void()
+  theme_void()+
+  theme(text = element_text(family = "mono"))
 
-#ggsave("figuras/05_grafico_piechart-ingresos-por-region.png", width = 10, height = 7)
+ggsave("figuras/05_grafico_piechart-ingresos-por-region.png", width = 10, height = 7)
 
 
-# Gráfico xx: Qué plataforma ha vendido más--------------------------------------------------------
+# Gráfico 6: Qué plataforma ha vendido más--------------------------------------------------------
 
 datos |> 
   group_by(Platform) |> 
@@ -726,9 +667,14 @@ datos |>
   labs(x = "plataforma",
        y = "cantidad de ventas",
        subtitle = "(en millones)")+
-  theme_bw()
+  theme_bw()+
+  theme(text = element_text(family = "mono"))
 
-# Gráfico xx: Top 10 juegos más vendidos--------------------------------------------------------------------
+ggsave("figuras/06_plataforma-mas-ventas.png", width = 10, height = 7)
+
+
+
+# Gráfico 7: Top 10 juegos más vendidos--------------------------------------------------------------------
 
 aux <- datos |> 
         group_by(Name) |> 
@@ -751,7 +697,9 @@ ggplot(aux, aes(y = reorder(Name,sum), x = sum))+
             fontface = "bold")+
   theme_bw()+
   theme(axis.text.y=element_blank(),
-        axis.ticks.y=element_blank())
+        axis.ticks.y=element_blank())+
+  theme(text = element_text(family = "mono"))
   
+ggsave("figuras/07_top-10-juegos-vendidos.png", width = 10, height = 7)
 
 

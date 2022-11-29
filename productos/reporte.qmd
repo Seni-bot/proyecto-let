@@ -17,14 +17,13 @@ toc: true
 
 Nos encontramos en un tiempo en donde la evolución de la tecnología ha avanzado lo suficiente como para reemplazar los tradicionales juegos de mesas, encuentros presenciales con amigos y/o familia. En lo que se enfoca este informe es en analizar los videojuegos, precisamente en cómo estos se han posicionado en el mercado a tal punto que es la industria con mayor flujo de dinero. Además de encontrar resultados interesantes como qué empresa se situa como la con mayor ganancia, o la con mayor ventas, tanto a nivel regional (continental) como global.
 
-
 ## Introducción
 
 En la historia, hemos visto cómo los videojuegos han ido evolucionando a medida que transcurre el tiempo. Podemos ver el cómo van mejorando sus motores gráficos, como también el catálogo de géneros de estos.
 
 Gracias a esto, las preferencias de los usuarios también han ido variando. En los inicios solo había unos pocos juegos que se vendían masivamente y eran casi la única alternativa para entretenerse virtualmente. Ahora, dado a la masificación de la industria de los videojuegos, existen una gran cantidad de géneros y formatos para estos.
 
-En este reporte analizaremos una base de datos que contiene videojuegos con ventas mayores a 100.000 copias al rededor del mundo, y están recopilados desde el año 1980 hasta el 2016.
+En este reporte analizaremos una base de datos que contiene videojuegos con ventas mayores a 100.000 copias alrededor del mundo, y están recopilados desde el año 1980 hasta el 2016.
 
 Es relevante el analizar este tipo de información para tener una idea de cómo se comporta la gente a la hora de comprar una copia tanto física como digital según su continente. Este tipo de analisis favorece en gran parte a las desarrolladoras de juegos, debido a que les ayuda a cómo enfocar su marketing o en qué continente enfocarse más al momento de crear un juego.
 
@@ -100,7 +99,8 @@ ggplot(unicos_genre, aes(area = n, fill = Genre, label = n)) +
   labs(subtitle = "(unidades en millones)",
        fill = "Género")+
   theme_bw()+
-  theme(legend.background = element_rect(fill="gray95", size=.5, linetype="dotted"))
+  theme(legend.background = element_rect(fill="gray95", size=.5, linetype="dotted"))+
+  theme(text = element_text(family = "mono"))
 
 ```
 
@@ -124,7 +124,8 @@ ggplot(unicos_year,(aes(x = Year, y = n, group = 1)))+
        y = "cantidad de videojuegos",
        x = "años")+
   scale_x_discrete(breaks = seq(1980, 2016, by = 6))+
-  theme_bw()
+  theme_bw()+
+  theme(text = element_text(family = "mono"))
 ```
 
 Podemos observar en la @fig-cant-juegos-xaño, que el año en donde más se lanzaron videojuegos al mercado fué el año 2009, con cerca de 1500 Millones de copias. También, desde ese año en adelante, se genera una tendencia a disminuir la cantidad de videojuegos lanzados. Esto se podría explicar debido a varios factores, una opción podría ser que las desarrolladoras empezaron a preocuparse más en realizar menos lanzamientos pero de una mayor calidad, o bien se podría relacionar con la salida de la séptima generación de videoconsolas (PlayStation 3, Xbox 360, Wii), puestas a disposición del público alrededor del año 2007.
@@ -146,7 +147,9 @@ datos |>
             vjust = 1.1,
             color = "white",
             fontface = "bold")+
-  theme_bw()
+  theme_bw()+
+  theme(text = element_text(family = "mono"))
+
 
 
 ```
@@ -172,7 +175,8 @@ datos |>
   labs(x = "plataforma",
        y = "cantidad de ventas",
        subtitle = "(en millones)")+
-  theme_bw()
+  theme_bw()+
+  theme(text = element_text(family = "mono"))
 ```
 
 nos percatamos que la plataforma con más ventas históricamente es la PS2 (Playstation 2), con más de 1200 millones de copias de videojuegos vendidas. Esto se puede explicar dado que esta consola fué lanzada a inicios del 2000 4 años antes que la Nintendo DS y 6 años de la Nintendo Wii, además de ser la videoconsola más vendida de todos los tiempos, con más de 155 millones de unidades. [Ver Artículo](https://es.wikipedia.org/wiki/PlayStation_2)
@@ -689,6 +693,8 @@ Luego, si presentamos las particularidades de cada región en un gráfico de bar
 #| label: fig-gen-masmenos-vendido
 # Gráfico: genero mas y menos vendido por región
 
+# Gráfico xx: genero mas y menos vendido por región------------------------------------------------
+
 genre <- c("Acción","Estrategia","Acción","Estrategia","Rol","FPS","Acción","Estrategia")
 
 area <- c(rep("Ventas NA",2),rep("Ventas EU",2),rep("Ventas JP",2),rep("Otras ventas",2))
@@ -711,7 +717,8 @@ ggplot(data, aes(fill=genre, y=valores, x=reorder(area, -valores))) +
                                "#fdfd96",
                                "#ff6961",
                                "#fdcae1"))+
-  theme_bw()
+  theme_bw()+
+  theme(text = element_text(family = "mono"))
 
 ```
 
@@ -749,14 +756,16 @@ ggplot(aux, aes(y = reorder(Name,sum), x = sum))+
             fontface = "bold")+
   theme_bw()+
   theme(axis.text.y=element_blank(),
-        axis.ticks.y=element_blank())
+        axis.ticks.y=element_blank())+
+  theme(text = element_text(family = "mono"))
+  
   
 
 ```
 
 Acá podemos ver claramente que el videojuego con mayor ventas a traves de la historia es Wii Sports. Otro resultado del cual no dudar, debido a lo comentado anteriormente de Nintedo. Luego, para saber el videojuego menos vendido en teoría debiesemos hacer el mismo procedimiento anterior, sin embargo la base de datos se limita a almacenar videojuegos con ventas mayores o iguales a 100.000 copias vendidas. Por lo cual, nos es imposible saber cual realmente es el con menor popularidad.
 
-Por ultimo, vamos a ver la proporción de ventas historicas según región. 
+Por ultimo, vamos a ver la proporción de ventas historicas según región.
 
 ```{r}
 #| message: false
@@ -813,17 +822,34 @@ ggplot(data_pie, aes(x="", y=Ventas, fill=Región)) +
   geom_text(aes(label = round(Ventas/8916*100,1)),
             position = position_stack(vjust = 0.5),
             colour = "white",
-            size = 7)+
+            size = 7)+ 
   coord_polar("y") +
   labs(subtitle = "(valores expresados como porcentaje)")+
   scale_fill_manual(values = c("#FFB100",
                                "#F194B4",
                                "#003844",
                                "#006C67"))+
-  theme_void()
+  theme_void()+
+  theme(text = element_text(family = "mono"))
 ```
 
 Vemos que el 49.3% de las ventas globales las abarca la región de Norte América, seguido de Europa con un 27.3%. Esta proporción no es nueva en el mercado de los videojuegos, ya que anteriormente se han realizado estudios acerca del mundo de la industria de los videojuegos, tal como indica la [Revista de estudios de juventud](http://www.injuve.es/sites/default/files/Revista98_completa.pdf), la cual afirma que Estados Unidos que el año 2008 facturó aproximadamente 22.000 millones de dólares.
+
+## Conclusión
+
+En base a los resultados, podemos sintetizar que el género más vendido a través de los años ha sido Acción. Por otra parte podemos apreciar que el año 2009 ocurrió el peak de lanzamientos de videojuegos, del cual la compañía que estuvo como lider en creación de estos Nintendo, con sus consolas Nintedo DS y Nintendo Wii.
+También, observamos que la plataforma con más copias vendidas fué la PS2, con mas de 1200 millones. Y que casi el 50% de las ventas de videojuegos, fueron por parte de la región de Norte América.
+
+Finalizando el análisis exploratorio, podemos concluir que el avance y ventas de los videojuegos ha marcado un fuerte cambio en el mercado global. Esto principalmente a que a dia de hoy la industria de estos es la que más dinero genera y mueve. 
+
+Como proyección a futuro de este proyecto se puede indagar más en las preguntas propuestas, para así poder hacer un análisis aún más detallado y poder ayudar más a las empresas creadoras de videojuegos a la hora de tomar decisiones tales como donde enfatizar más su marketing o en que momento del año lanzar sus proyectos.
+
+
+
+
+
+
+
 
 
 
