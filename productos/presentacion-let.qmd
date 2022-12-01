@@ -169,7 +169,6 @@ PS2 lanzada a principios del 2000. Consola más vendida de todos los tiempos.
 :::
 
 ## Análisis exploratorio
-
 ```{r}
 ## Action -----------------------------------------------------------------------------------------
 
@@ -542,6 +541,302 @@ for(i in 1:21){
 
 strategy <- unlist(c(stra_na, stra_eu, stra_jp, stra_other))
 
+
+## Creación del df -> gt --------------------------------------------------------------------------
+
+df <- data.frame()
+
+df <-df|>
+  rbind(action)
+df <- df|>
+  rbind(adventure)
+df <- df|>
+  rbind(fighting)
+df <- df|>
+  rbind(misc)
+df <- df|>
+  rbind(platform)
+df <- df|>
+  rbind(puzzle)
+df <- df|>
+  rbind(racing)
+df <- df|>
+  rbind(role)
+df <- df|>
+  rbind(shooter)
+df <- df|>
+  rbind(simulation)
+df <- df|>
+  rbind(sports)
+df <- df|>
+  rbind(strategy)
+
+colnames(df) <- c("Ventas_NA", "Ventas_EU", "Ventas_JP", "Otras_ventas")
+df <- cbind(Genero = c("Acción", "Aventura", "Pelea", "Miscelaneo", "Plataforma",
+              "Puzle", "Carreras", "Rol", "FPS", "Simulacion", "Deportes", "Estrategia"), df)
+gt(df)|>
+  tab_header(
+    title = "Comparación de ventas por género",
+    subtitle = "(en millones)",
+  )|> 
+  tab_options(
+    table.width = pct(100)
+  )
+
+```
+## Análisis exploratorio
+```{r}
+gt(df)|>
+  tab_header(
+    title = "Comparación de ventas por género",
+    subtitle = "(en millones)",
+  )|> 
+  tab_options(
+    table.width = pct(100)
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "lightgreen"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_NA,
+      rows = Ventas_NA >= 800
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "indianred2"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_NA,
+      rows = Ventas_NA <= 70
+    )
+  )
+
+```
+
+
+## Análisis exploratorio
+
+```{r}
+gt(df)|>
+  tab_header(
+    title = "Comparación de ventas por género",
+    subtitle = "(en millones)",
+  )|> 
+  tab_options(
+    table.width = pct(100)
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "lightgreen"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_NA,
+      rows = Ventas_NA >= 800
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "indianred2"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_NA,
+      rows = Ventas_NA <= 70
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "lightgreen"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_EU,
+      rows = Ventas_EU >= 500
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "indianred2"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_EU,
+      rows = Ventas_EU <= 50
+    )
+  )
+```
+## Análisis exploratorio
+```{r}
+gt(df)|>
+  tab_header(
+    title = "Comparación de ventas por género",
+    subtitle = "(en millones)",
+  )|> 
+  tab_options(
+    table.width = pct(100)
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "lightgreen"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_NA,
+      rows = Ventas_NA >= 800
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "indianred2"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_NA,
+      rows = Ventas_NA <= 70
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "lightgreen"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_EU,
+      rows = Ventas_EU >= 500
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "indianred2"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_EU,
+      rows = Ventas_EU <= 50
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "lightgreen"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_JP,
+      rows = Ventas_JP >= 350
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "indianred2"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_JP,
+      rows = Ventas_JP <= 39
+    )
+  )
+```
+## Análisis exploratorio
+```{r}
+gt(df)|>
+  tab_header(
+    title = "Comparación de ventas por género",
+    subtitle = "(en millones)",
+  )|> 
+  tab_options(
+    table.width = pct(100)
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "lightgreen"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_NA,
+      rows = Ventas_NA >= 800
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "indianred2"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_NA,
+      rows = Ventas_NA <= 70
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "lightgreen"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_EU,
+      rows = Ventas_EU >= 500
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "indianred2"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_EU,
+      rows = Ventas_EU <= 50
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "lightgreen"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_JP,
+      rows = Ventas_JP >= 350
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "indianred2"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Ventas_JP,
+      rows = Ventas_JP <= 39
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "lightgreen"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Otras_ventas,
+      rows = Otras_ventas >= 180
+    )
+  )|> 
+  tab_style(
+    style = list(
+      cell_fill(color = "indianred2"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = Otras_ventas,
+      rows = Otras_ventas <= 12
+    )
+  ) 
+```
+
+## Análisis exploratorio
+
+```{r}
+
 genre <- c("Acción","Estrategia","Acción","Estrategia","Rol","FPS","Acción","Estrategia")
 
 area <- c(rep("Ventas NA",2),rep("Ventas EU",2),rep("Ventas JP",2),rep("Otras ventas",2))
@@ -552,7 +847,6 @@ valores <- c(as.integer(action[1]),as.integer(strategy[1]),
             as.integer(action[4]),as.integer(strategy[4]))
 
 data <- data.frame(genre, area, valores)
-
 ggplot(data, aes(fill=genre, y=valores, x=reorder(area, -valores))) + 
   geom_bar(position="dodge", stat="identity")+
   labs(x = "region",
