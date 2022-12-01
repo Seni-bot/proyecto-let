@@ -959,7 +959,6 @@ ggplot(data_pie, aes(x="", y=Ventas, fill=Región)) +
 
 ::: incremental
 -   El género más vendido en la historia es Acción.
--   Compañía lider en ventas.
 -   Región con mayor influencia.
 -   Mercado global.
 :::
