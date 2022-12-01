@@ -837,20 +837,8 @@ Vemos que el 49.3% de las ventas globales las abarca la región de Norte Améric
 
 ## Conclusión
 
-En base a los resultados, podemos sintetizar que el género más vendido a través de los años ha sido Acción. Por otra parte podemos apreciar que el año 2009 ocurrió el peak de lanzamientos de videojuegos, del cual la compañía que estuvo como lider en creación de estos Nintendo, con sus consolas Nintedo DS y Nintendo Wii.
-También, observamos que la plataforma con más copias vendidas fué la PS2, con mas de 1200 millones. Y que casi el 50% de las ventas de videojuegos, fueron por parte de la región de Norte América.
+En base a los resultados, podemos sintetizar que el género más vendido a través de los años ha sido Acción. Por otra parte podemos apreciar que el año 2009 ocurrió el peak de lanzamientos de videojuegos, del cual la compañía que estuvo como lider en creación de estos Nintendo, con sus consolas Nintedo DS y Nintendo Wii. También, observamos que la plataforma con más copias vendidas fué la PS2, con mas de 1200 millones. Y que casi el 50% de las ventas de videojuegos, fueron por parte de la región de Norte América.
 
-Finalizando el análisis exploratorio, podemos concluir que el avance y ventas de los videojuegos ha marcado un fuerte cambio en el mercado global. Esto principalmente a que a dia de hoy la industria de estos es la que más dinero genera y mueve. 
+Finalizando el análisis exploratorio, podemos concluir que el avance y ventas de los videojuegos ha marcado un fuerte cambio en el mercado global. Esto principalmente a que a dia de hoy la industria de estos es la que más dinero genera y mueve.
 
 Como proyección a futuro de este proyecto se puede indagar más en las preguntas propuestas, para así poder hacer un análisis aún más detallado y poder ayudar más a las empresas creadoras de videojuegos a la hora de tomar decisiones tales como donde enfatizar más su marketing o en que momento del año lanzar sus proyectos.
-
-
-
-
-
-
-
-
-
-
-

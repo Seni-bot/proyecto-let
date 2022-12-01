@@ -3,7 +3,7 @@ title: "Análisis exploratorio de las ventas de 17.000 videojuegos"
 author: "Maximiliano Medina"
 format:
   revealjs: 
-    theme: default
+    theme: serif
 editor: visual
 lang: es
 ---
@@ -11,16 +11,25 @@ lang: es
 ## Contexto
 
 ::: incremental
--   Evolución de los videojuegos
--   Preferencias de los usuarios
+-   Evolución de los videojuegos.
+-   Preferencias de los usuarios.
 :::
 
 ## ¿Por qué analizar las ventas?
 
+::: incremental
 -   Tener una idea del comportamiento de la gente por región.
 -   Favorecer a las desarolladoras de juegos en cómo enfocar sus estrategias de marketing.
+:::
 
-## Base de datos
+# Base de datos
+
+## Origen de los datos
+
+![](https://upload.wikimedia.org/wikipedia/commons/7/7c/Kaggle_logo.png){fig-align="center"}
+
+
+## Variables
 
 La base de datos se compone por las siguientes variables
 
@@ -86,14 +95,17 @@ ggplot(unicos_genre, aes(area = n, fill = Genre, label = n)) +
                     size = 15)+
   scale_fill_discrete(labels=c("Acción", "Aventura", "Pelea", "Miscelaneo", "Plataforma",
                                "Puzle", "Carreras", "Rol", "FPS", "Simulacion", "Deportes", "Estrategia"))+
-  labs(subtitle = "(unidades en millones)",
+  labs(title = "Género más vendido (1980-2016)",
+    subtitle = "(unidades en millones)",
        fill = "Género")+
   theme_bw()+
-  theme(legend.background = element_rect(fill="gray95", size=.5, linetype="dotted"))+
-  theme(text = element_text(family = "mono"))
+  theme(legend.background = element_rect(fill="gray95", size=.5, linetype="dotted"))
 
 ```
 
+::: {.notes}
+Mencionar solo los 3 primeros
+:::
 ## Análisis exploratorio
 
 ```{r}
@@ -103,13 +115,16 @@ unicos_year <- filter(unicos_year, Year != "N/A",
 ggplot(unicos_year,(aes(x = Year, y = n, group = 1)))+
   geom_line(color = "#0a7d93", size = 1)+
   geom_point(color = "#0f343b", size = 2)+
-  labs(
+  labs(title = "Cantidad de juegos lanzados entre 1980-2016",
        y = "cantidad de videojuegos",
        x = "años")+
   scale_x_discrete(breaks = seq(1980, 2016, by = 6))+
-  theme_bw()+
-  theme(text = element_text(family = "mono"))
+  theme_bw()
 ```
+
+:::{.notes}
+El peak fué el año 2009, con cerca de 1500 nuevos titulos.
+:::
 
 ## Análisis exploratorio
 
@@ -119,16 +134,21 @@ datos |>
   count(Platform) |> 
   ggplot(aes(x = reorder(Platform,-n), y = n))+
   geom_bar(stat="identity", fill = "#0a7d93")+
-  labs(x = "plataforma",
+  labs(title = "Distribución de juegos lanzados el año 2009",
+    x = "plataforma",
        y = "ventas")+
   geom_text(aes(label = n),
             vjust = 1.1,
             color = "white",
             fontface = "bold")+
-  theme_bw()+
-  theme(text = element_text(family = "mono"))
+  theme_bw()
 
 ```
+:::{.notes}
+Hacer enfasis en los 2 primeros, pero nombrar los 3.
+Hablar de Nintendo -> Consolas de septima gen, DSI 2008 y Wii 2006.
+Aclarar que DS abarca DS, DS lite, DSI y DSI XL.
+:::
 
 ## Análisis exploratorio
 
@@ -138,12 +158,15 @@ datos |>
   summarise(sum = sum(Global_Sales)) |> 
   ggplot(aes(x = reorder(Platform, -sum), y = sum))+
   geom_bar(stat="identity", fill = "#0a7d93" )+
-  labs(x = "plataforma",
+  labs(title = "Plataforma con más ventas",
+    x = "plataforma",
        y = "cantidad de ventas",
        subtitle = "(en millones)")+
-  theme_bw()+
-  theme(text = element_text(family = "mono"))
+  theme_bw()
 ```
+:::{.notes}
+PS2 lanzada a principios del 2000. Consola más vendida de todos los tiempos.
+:::
 
 ## Análisis exploratorio
 
@@ -541,8 +564,119 @@ ggplot(data, aes(fill=genre, y=valores, x=reorder(area, -valores))) +
                                "#fdfd96",
                                "#ff6961",
                                "#fdcae1"))+
-  theme_bw()+
-  theme(text = element_text(family = "mono"))
+  theme_bw()
 
 
 ```
+
+## Análisis exploratorio
+
+```{r}
+aux <- datos |> 
+        group_by(Name) |> 
+        summarise(sum = sum(Global_Sales)) 
+  
+
+aux <- aux[order(aux$sum,decreasing = TRUE), ]
+
+aux <- aux |>
+  slice(1:10)
+
+ggplot(aux, aes(y = reorder(Name,sum), x = sum))+
+  geom_bar(stat="identity", fill = "#0a7d93" )+
+  labs(title = "Videojuego más vendido",
+    y = "videojuego",
+       x = "cantidad de ventas",
+       subtitle = "(en millones)")+
+  geom_text(aes(label = Name),
+            hjust = 1.1,
+            color = "white",
+            fontface = "bold")+
+  theme_bw()+
+  theme(axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+```
+
+## Análisis exploratorio
+
+```{r}
+## Revenue NA -------------------------------------------------------------------------------------
+revenue_na <- count(datos, NA_Sales)
+rev_na <- 0
+for(i in 1:409){
+  rev_na <- rev_na + revenue_na[i,1] * revenue_na[i,2]
+}
+
+## Revenue EU -------------------------------------------------------------------------------------
+revenue_eu <- count(datos, EU_Sales)
+rev_eu <- 0
+for(i in 1:305){
+  rev_eu <- rev_eu + revenue_eu[i,1] * revenue_eu[i,2]
+}
+
+## Revenue JP -------------------------------------------------------------------------------------
+revenue_jp <- count(datos, JP_Sales)
+rev_jp <- 0
+for(i in 1:244){
+  rev_jp <- rev_jp + revenue_jp[i,1] * revenue_jp[i,2]
+}
+
+## Revenue Other ----------------------------------------------------------------------------------
+revenue_other <- count(datos, Other_Sales)
+rev_other <- 0
+for(i in 1:157){
+  rev_other <- rev_other + revenue_other[i,1] * revenue_other[i,2]
+}
+
+## creando df -> piechart--------------------------------------------------------------------------
+
+data_pie <- data.frame()
+
+data_pie <- data_pie|>
+  rbind(as.numeric(rev_na))
+data_pie <- data_pie|>
+  rbind(as.numeric(rev_eu))
+data_pie <- data_pie|>
+  rbind(as.numeric(rev_jp))
+data_pie <- data_pie|>
+  rbind(as.numeric(rev_other))
+data_pie <- cbind(region = c("Norte América", "Europa", "Japón", "Otro"),data_pie)
+
+colnames(data_pie) <- c("Región", "Ventas")
+
+ggplot(data_pie, aes(x="", y=Ventas, fill=Región)) +
+  geom_bar(stat="identity", width=1, color="white") +
+  geom_text(aes(label = round(Ventas/8916*100,1)),
+            position = position_stack(vjust = 0.5),
+            colour = "white",
+            size = 7)+ 
+  coord_polar("y") +
+  labs(
+    title = "Ingresos por región",
+    subtitle = "(valores expresados como porcentaje)")+
+  scale_fill_manual(values = c("#FFB100",
+                               "#F194B4",
+                               "#003844",
+                               "#006C67"))+
+  theme_void()
+```
+
+# Conclusiones
+
+::: incremental
+-   El género más vendido en la historia es Acción.
+-   Compañía lider en ventas.
+-   Región con mayor influencia.
+-   Mercado global.
+:::
+
+# Proyecciones a futuro
+
+::: incremental
+- Indagar más a profundidad.
+- Responder preguntas de forma más precisa.
+
+:::
+
+
+# Gracias por ver :)
